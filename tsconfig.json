@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": false,
+    "baseUrl": ".",
+    "paths": { "@/*": ["packages/client/src/*"] },
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
+    "types": ["vite/client"]
+  },
+  "include": ["app/.vitepress/**/*.ts", "app/.vitepress/**/*.tsx", "app/.vitepress/**/*.vue"],
+  "exclude": ["node_modules"]
+}
