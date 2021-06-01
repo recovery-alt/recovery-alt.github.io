@@ -25,7 +25,7 @@
   "scripts": {
     "dev": "export NODE_ENV=development; vitepress dev app --host",
     "build": "export NODE_ENV=production; vitepress build app",
-    "serve": "vitepress serve app"
+    "publish": "export NODE_ENV=production; vitepress build app && sh scripts/deploy.sh"
   },
   "prettier": {
     "singleQuote": true,

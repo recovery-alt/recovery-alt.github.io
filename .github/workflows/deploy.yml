@@ -24,3 +24,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
           FOLDER: ./app/.vitepress/dist # The folder the action should deploy.
+      - name: 'publish in gitee'
+        uses: pixta-dev/repository-mirroring-action@v1
+        with:
+          target_repo_url: git@gitee.com:cq360/cq360.git
+          ssh_private_key: ${{ secrets.GITEE_SECRET }}
