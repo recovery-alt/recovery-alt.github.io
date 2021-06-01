@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>基于el-tree的虚拟滚动 | Recovery</title>
+    <meta name="description" content="Hey 👋 I'm building Vue projects and would like to share my journey with you.">
+    <link rel="stylesheet" href="/assets/style.ff1a8149.css">
+    <link rel="modulepreload" href="/assets/app.07b36d20.js">
+    <link rel="modulepreload" href="/assets/blog_vue_基于el-tree的虚拟滚动.md.70598f15.lean.js">
+    <link rel="modulepreload" href="/assets/app.07b36d20.js">
+    <link rel="icon" href="/icon.svg">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Dosis:wght@300;400;500;600;700&amp;display=swap">
+    <meta name="twitter:title" content="基于el-tree的虚拟滚动 | Recovery">
+    <meta property="og:title" content="基于el-tree的虚拟滚动 | Recovery">
+  </head>
+  <body>
+    <div id="app"><div class="theme"><div class="bg-gray-50 px-5 sm:px-7 md:px-10"><div class="prose md:prose-xl prose-green mx-auto"><header class="navbar mb-10 sm:mb-16 md:mb-20"><div class="w-full flex items-center justify-between border-b-2 border-gray-100 py-3 md:py-6"><div class="relative ml-2 md:ml-0"><svg class="blob" viewBox="0 0 200 200" width="80" height="80" xmlns="http://www.w3.org/2000/svg"><path fill="rgb(5, 150, 105)" d="M50.4,-15.8C59.3,10.9,56.2,42.1,36,58.9C15.9,75.8,-21.4,78.3,-41.8,62.4C-62.2,46.4,-65.8,11.9,-56,-16C-46.2,-43.9,-23.1,-65.4,-1.2,-65C20.8,-64.6,41.5,-42.4,50.4,-15.8Z" transform="translate(100 100)"></path></svg><a class="logo" aria-label="Recovery, back to home" href="/"><span class="font-bold font-header text-green-700">Recovery</span></a></div><div class="flex-grow"></div><!--[--><nav class="nav-links"><div class="hidden md:block"><!--[--><div class="nav-item inline-block ml-8" data-v-4c94a9e9><a class="nav-link font-semibold text-gray-700 d-block" href="/" target="" rel="" data-v-4c94a9e9>Home</a></div><div class="nav-item inline-block ml-8" data-v-4c94a9e9><a class="nav-link font-semibold text-gray-700 d-block" href="/about/" target="" rel="" data-v-4c94a9e9>About</a></div><div class="nav-item inline-block ml-8" data-v-4c94a9e9><a class="nav-link font-semibold text-gray-700 d-block" href="/contact/" target="" rel="" data-v-4c94a9e9>Contact</a></div><!--]--></div><div class="-mr-2 -my-2 md:hidden"><button type="button" class="
+          bg-white
+          rounded-md
+          p-2
+          inline-flex
+          items-center
+          justify-center
+          text-gray-400
+          hover:text-gray-500
+          hover:bg-gray-100
+          focus:outline-none
+          focus:ring-2 focus:ring-inset focus:ring-green-500
+        "><span class="sr-only">Open menu</span><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button></div></nav><div class="opacity-0 scale-95 duration-100 ease-in pointer-events-none absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"><div class="
+        rounded-lg
+        shadow-lg
+        ring-1 ring-black ring-opacity-5
+        bg-white
+        divide-y-2 divide-gray-50
+      "><div class="pt-5 pb-6 px-5"><button type="button" class="
+            absolute
+            z-20
+            top-4
+            right-4
+            bg-white
+            rounded-md
+            p-2
+            inline-flex
+            items-center
+            justify-center
+            text-gray-400
+            hover:text-gray-500
+            hover:bg-gray-100
+            focus:outline-none
+            focus:ring-2 focus:ring-inset focus:ring-green-500
+          "><span class="sr-only">Close menu</span><svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button><div class="text-center"><!--[--><div class="nav-item mb-2" data-v-4c94a9e9><a class="nav-link font-semibold text-gray-700 d-block" href="/" target="" rel="" data-v-4c94a9e9>Home</a></div><div class="nav-item mb-2" data-v-4c94a9e9><a class="nav-link font-semibold text-gray-700 d-block" href="/about/" target="" rel="" data-v-4c94a9e9>About</a></div><div class="nav-item mb-2" data-v-4c94a9e9><a class="nav-link font-semibold text-gray-700 d-block" href="/contact/" target="" rel="" data-v-4c94a9e9>Contact</a></div><!--]--></div></div></div></div><!--]--></div></header><main class="pb-10 sm:pb-16 md:pb-20"><!----><div class="content animate-fadeIn"><h2 id="思路"><a class="header-anchor" href="#思路" aria-hidden="true">#</a> 思路</h2><ol><li>用一个 prop(<code>useVirtualScroll</code>)控制输入确保不会污染 el-tree 源码</li><li>在完整的树上截取一个树片段</li><li>对片段树进行处理，去除所有的 childNodes(称之为<code>releaseNodeLoad</code>)</li><li>使用树片段进行渲染</li><li>处理滚动/展开/收缩/查询，每一次都触发以上步骤 2-4</li></ol><h2 id="难点"><a class="header-anchor" href="#难点" aria-hidden="true">#</a> 难点</h2><ul><li>如何截取片段树</li><li>如何将片段构建成一个片段树</li><li>滚动的实现和优化</li></ul><div class="language-js"><pre><code><span class="token keyword">const</span> ELTree <span class="token operator">=</span> <span class="token punctuation">{</span>
+  root<span class="token operator">:</span> <span class="token punctuation">{</span>
+    data<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 传入的data</span>
+    childNodes<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// 实际渲染的树节点</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 树的根节点(完整树)</span>
+  virtualTree<span class="token operator">:</span> <span class="token punctuation">{</span> childNodes<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// 片段树</span>
+  start<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 起始位置</span>
+  itemHeight<span class="token operator">:</span> <span class="token number">26</span><span class="token punctuation">,</span> <span class="token comment">// 每一个节点的高度</span>
+  paddingTop<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 虚拟滚动垫的高度</span>
+  boxMaxNumber<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 可视区域可容纳个数</span>
+  totalDisplay<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 完整树中需要显示在页面的节点数</span>
+  counter<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 计数器，记录遍历推入片段树</span>
+  maxStart<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token comment">// 起始位置的最大值(触底判断)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre></div><h3 id="难点一：如何截取片段树"><a class="header-anchor" href="#难点一：如何截取片段树" aria-hidden="true">#</a> 难点一：如何截取片段树</h3><p>确定片段树()的起点和终点</p><div class="language-js"><pre><code><span class="token comment">// 1. 页面mounted 2.传入data改变 3. 过滤时</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>start <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 滚动时</span>
+<span class="token keyword">function</span> <span class="token function">getStartIndex</span><span class="token punctuation">(</span><span class="token parameter">scrollTop</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> startIndex <span class="token operator">=</span> <span class="token operator">~</span><span class="token operator">~</span><span class="token punctuation">(</span>scrollTop <span class="token operator">/</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> startIndex <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">?</span> startIndex <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 折叠/展开</span>
+<span class="token keyword">this</span><span class="token punctuation">.</span>start <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>paddingTop <span class="token operator">/</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemHeight<span class="token punctuation">;</span>
+</code></pre></div><p>计算可视区域可容纳个数(boxMaxNumber)</p><ul><li>正常情况 <ul><li>记录所有展开的 key，并推入数组(expandedKeys)</li><li>在展开/折叠的时候维护 expandedKeys</li><li>遍历 expandedKeys，并通过 key 递归该 key 的所有子节点，将满足条件 1.没有 push 过 2.level 大于 1 的 key 推入数组(keys)</li><li>输出<code>keys.length + this.root.childNodes.length</code></li></ul></li><li>过滤条件 <ul><li>只要遍历完整树，选出其中节点的<code>expanded</code>为<code>true</code></li></ul></li></ul><div class="language-js"><pre><code><span class="token comment">// 计算出所有默认展开的keys</span>
+<span class="token keyword">function</span> <span class="token function">calcExpandedKeys</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>expandedKeys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>defaultExpandAll<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>expandedKeys <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>nodesMap<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>defaultExpandedKeys<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>expandedKeys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span><span class="token keyword">this</span><span class="token punctuation">.</span>defaultExpandedKeys<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 展开/折叠维护expandedKeys</span>
+<span class="token keyword">function</span> <span class="token function">handleVirtualTreeExpand</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>useVirtualScroll<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> expandedKeys<span class="token punctuation">,</span> key <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tree<span class="token punctuation">.</span>store<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> nodeKey <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>node<span class="token punctuation">.</span>data<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>expanded<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> index <span class="token operator">=</span> expandedKeys<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>nodeKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        expandedKeys<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      expandedKeys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>nodeKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>tree<span class="token punctuation">.</span><span class="token function">resetAndSliceTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 获取应该显示在页面上的个数</span>
+<span class="token keyword">function</span> <span class="token function">getTotalDisplay</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> nodesMap <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 获取level为1的节点长度</span>
+  <span class="token keyword">let</span> len <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>root<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> keys <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">pushKey</span> <span class="token operator">=</span> <span class="token parameter">key</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>keys<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> nodesMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>level <span class="token operator">&gt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      keys<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// 递归找出所有需要展开的key</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>expandedKeys<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">key</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> show <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">judgeShow</span><span class="token punctuation">(</span>nodesMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>show<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">pushKey</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      nodesMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">node</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> show <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">judgeShow</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        show <span class="token operator">&amp;&amp;</span> <span class="token function">pushKey</span><span class="token punctuation">(</span>node<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> len <span class="token operator">+</span> keys<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="难点二：如何将片段构建成一个片段树"><a class="header-anchor" href="#难点二：如何将片段构建成一个片段树" aria-hidden="true">#</a> 难点二：如何将片段构建成一个片段树</h3><div class="language-js"><pre><code><span class="token comment">// 将拿到的树节点放入虚拟滚动树中</span>
+<span class="token keyword">function</span> <span class="token function">setTreeNode</span><span class="token punctuation">(</span><span class="token parameter">targetNode</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// 能否找到父级</span>
+  <span class="token keyword">let</span> canFindParent <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> childNodes <span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>virtualTree<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">traverse</span> <span class="token operator">=</span> <span class="token parameter">node</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token punctuation">{</span> childNodes <span class="token punctuation">}</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+    <span class="token comment">// 找到父节点</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>node <span class="token operator">===</span> targetNode<span class="token punctuation">.</span>parent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      canFindParent <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> key <span class="token operator">=</span> node<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>nodeKey<span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token comment">// 没有缓存过</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>store<span class="token punctuation">.</span>childrenMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 缓存原节点数据</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>store<span class="token punctuation">.</span>childrenMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> node<span class="token punctuation">.</span>childNodes<span class="token punctuation">;</span>
+        node<span class="token punctuation">.</span>childNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      node<span class="token punctuation">.</span>childNodes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>targetNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    childNodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>traverse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  childNodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>traverse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// 找不到就直接推进去</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>canFindParent<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    childNodes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>targetNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">releaseNodeLoad</span><span class="token punctuation">(</span>childNodes<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h3 id="难点三：滚动的实现和优化"><a class="header-anchor" href="#难点三：滚动的实现和优化" aria-hidden="true">#</a> 难点三：滚动的实现和优化</h3><div class="language-js"><pre><code><span class="token comment">// 滚动事件</span>
+<span class="token keyword">function</span> <span class="token function">handleScroll</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>useVirtualScroll<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> scrollTop <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$el<span class="token punctuation">.</span>scrollTop<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>scrollTop <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> scrollTop <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>height <span class="token operator">&lt;=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>totalHeight<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">updateVisibleArea</span><span class="token punctuation">(</span>scrollTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// 更新可视区域</span>
+<span class="token keyword">function</span> <span class="token function">updateVisibleArea</span><span class="token punctuation">(</span><span class="token parameter">scrollTop</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>start <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getStartIndex</span><span class="token punctuation">(</span>scrollTop<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>paddingTop <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>start <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token keyword">this</span><span class="token punctuation">.</span>start <span class="token operator">*</span> <span class="token keyword">this</span><span class="token punctuation">.</span>itemHeight <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">resetAndSliceTree</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="优化"><a class="header-anchor" href="#优化" aria-hidden="true">#</a> 优化</h2><blockquote><p>问题：虚拟滚动树保留了对 childNodes 的引用，因此在 el-tree 构建过程中，会去生成对应节点，节点太多会很卡</p></blockquote><blockquote><p>解决方案：在构建完成虚拟滚动树之后，卸载所有 childNodes，并存入 map 中，<code>{nodeId: childNodes}</code>，在初始化的时候重新挂载到完整树上</p></blockquote><div class="language-js"><pre><code><span class="token keyword">function</span> <span class="token function">releaseNodeLoad</span><span class="token punctuation">(</span><span class="token parameter">childNodes</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>boxMaxNumber <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>counter <span class="token operator">===</span> <span class="token keyword">this</span><span class="token punctuation">.</span>totalDisplay<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> <span class="token function-variable function">traverse</span> <span class="token operator">=</span> <span class="token parameter">node</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> <span class="token punctuation">{</span> childNodes<span class="token punctuation">,</span> expanded<span class="token punctuation">,</span> data <span class="token punctuation">}</span> <span class="token operator">=</span> node<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>node<span class="token punctuation">.</span>expanded<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> key <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span>nodeKey<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>store<span class="token punctuation">.</span>childrenMap<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> childNodes<span class="token punctuation">;</span>
+        node<span class="token punctuation">.</span>childNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      childNodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>traverse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    childNodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>traverse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre></div><h2 id="完整流程"><a class="header-anchor" href="#完整流程" aria-hidden="true">#</a> 完整流程</h2><div class="language-"><pre><code>初始化相关的数值(resetVirtualTree) =&gt; 将树切片(sliceTree) =&gt; 将切出来的每个节点放入虚拟滚动树(setTreeNode) =&gt; 去除节点包袱(releaseNodeLoad)
+
+mounted/data改变/展开/折叠/过滤文本/滚动 执行上述操作
+</code></pre></div></div></main></div></div><footer class="px-5 sm:px-7 md:px-10 text-center text-gray-400 text-sm my-5"><div class="text-center mb-5"><a href="https://github.com/cq360767996" target="_blank" class="unstyled transition-opacity inline-block opacity-70 hover:opacity-100 mr-5" title="Github: Loonpwn"><svg role="img" viewBox="0 0 24 24" width="24" height="24" xmlns="http://www.w3.org/2000/svg" fill="var(--c-brand)"><title>GitHub icon</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"></path></svg></a><a href="https://juejin.cn/user/1838039174496135" target="_blank" class="unstyled transition-opacity inline-block opacity-70 hover:opacity-100 inline-block" title="juejin: Recovery"><svg width="24" height="24" viewBox="0 0 45 38" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><title>Juejin</title><desc>Juejin.cn</desc><defs></defs><g id="0.1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="Group-14" transform="translate(1.000000, 5.000000)" fill="#006CFF"><path d="M21.2934328,2.58313049 L18.0173984,0 L14.594624,2.69887801 L14.4172077,2.84182304 L18.0173984,5.71242483 L21.6286578,2.84182304 L21.2934328,2.58313049 Z M33.7078289,12.6006674 L18.0079109,24.980276 L2.31748044,12.6082574 L0,14.4697052 L18.0079109,28.6690167 L36.0256256,14.4621152 L33.7078289,12.6006674 Z M18.0079109,13.6050776 L9.46441554,6.86863505 L7.14661885,8.7300829 L18.0079109,17.2941345 L28.8783742,8.7224929 L26.5605775,6.86104505 L18.0079109,13.6050776 Z" id="Fill-1-Copy"></path></g></g></svg></a></div><p class="mb-3">© 2021 Recovery, All rights reserved.</p></footer><!----></div></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"index.md\":\"07a730b8\",\"about_index.md\":\"80001d7e\",\"contact_index.md\":\"cd39d4da\",\"blog_css_居中方案.md\":\"99f034fe\",\"blog_interview_index.md\":\"61d03cba\",\"blog_js_js模块化.md\":\"24053fa6\",\"blog_js_代码规范.md\":\"ee3eff78\",\"blog_js_前端性能优化.md\":\"58f0472d\",\"blog_js_手写promise.md\":\"f15ebd8b\",\"blog_js_手写系列.md\":\"dd1f0725\",\"blog_js_浏览器常见问题.md\":\"b1693f2e\",\"blog_leetcode_index.md\":\"56a40036\",\"blog_vue_基于el-tree的虚拟滚动.md\":\"70598f15\",\"blog_webpack_webpack优化.md\":\"e67c212a\"}")</script>
+    <script type="module" async src="/assets/app.07b36d20.js"></script>
+  </body>
+</html>
