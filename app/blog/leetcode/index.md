@@ -76,7 +76,7 @@ if (len % 2 !== 0) return false;
 - 后移较小值的指针和结果链表的指针
 
 ```js
-var mergeTwoLists = function(l1, l2) {
+var mergeTwoLists = function (l1, l2) {
   const prevHead = new ListNode();
   let prevNode = prevHead;
   while (l1 && l2) {
@@ -100,7 +100,7 @@ var mergeTwoLists = function(l1, l2) {
 - 通过移动 l1/l2 的指针不断递归
 
 ```js
-var mergeTwoLists = function(l1, l2) {
+var mergeTwoLists = function (l1, l2) {
   if (!l1) return l2;
   if (!l2) return l1;
   if (l1.val <= l2.val) {
@@ -200,4 +200,11 @@ f(i) = Math.max(f(i - 1) + nums[i], nums[i]);
 时间复杂度：O(m+n)
 空间复杂度：O(1)
 
-### 树相关题目
+### 只出现一次的数字
+
+[地址](https://leetcode-cn.com/problems/single-number/)
+使用异或运算符`^`，具备以下特点
+
+- `a ^ 0 === a`
+- `a ^ a === 0`
+- `a ^ b ^ a === b`
