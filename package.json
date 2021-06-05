@@ -3,9 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "dev": "export NODE_ENV=development; vitepress dev app --host",
+    "build": "export NODE_ENV=production; vitepress build app"
+  },
   "dependencies": {
     "@panelbear/panelbear-js": "^1.2.0",
-    "ant-design-vue": "^2.1.6",
+    "vue": "^3.0.11",
     "zooming": "^2.1.1"
   },
   "devDependencies": {
@@ -17,15 +21,10 @@
     "less": "^4.1.1",
     "lint-staged": "^11.0.0",
     "postcss": "^8.3.0",
-    "prettier": "^2.3.0",
-    "tailwindcss": "^2.1.2",
+    "prettier": "^2.3.1",
+    "tailwindcss": "^2.1.4",
     "vitepress": "^0.14.0",
-    "vue-tsc": "^0.1.6"
-  },
-  "scripts": {
-    "dev": "export NODE_ENV=development; vitepress dev app --host",
-    "build": "export NODE_ENV=production; vitepress build app",
-    "publish": "export NODE_ENV=production; vitepress build app && sh scripts/deploy.sh"
+    "vue-tsc": "^0.1.7"
   },
   "prettier": {
     "singleQuote": true,

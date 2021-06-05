@@ -17,5 +17,11 @@ module.exports = {
       { text: 'About', link: '/about/' },
       { text: 'Contact', link: '/contact/' },
     ],
+    algolia: {
+      applicationID: 'JMG2GX9DBP',
+      apiKey: '9b72ed3b2cc5b4f8fd8f21f78685f840',
+      indexName: 'blog',
+      chunkSize: 5000,
+    },
   },
 };

@@ -72,47 +72,35 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import NavBar from './components/NavBar.vue';
 import PostTags from './components/PostTags.vue';
-import { inject, computed } from 'vue';
+import { inject, computed, watch } from 'vue';
 import { postForPath } from './utils';
-import { useRoute } from 'vitepress/dist/client/app/router';
+import { useRoute, usePageData } from 'vitepress';
 
-export default {
-  components: {
-    PostTags,
-    NavBar,
-  },
-  setup() {
-    const zoom = inject('zoom');
-    const route = useRoute();
-    const post = computed(() => postForPath(route.path));
+const zoom = inject<any>('zoom');
+const route = useRoute();
+const post = computed(() => postForPath(route.path));
+const page = usePageData();
 
-    return {
-      zoom,
-      post,
-    };
+watch(
+  page,
+  () => {
+    if (zoom && page.value.relativePath !== 'index.md') {
+      setTimeout(() => {
+        zoom.listen('.prose img');
+      }, 500);
+    }
+    if (typeof document !== 'undefined') {
+      // @todo fix vitepress seo
+      document
+        .querySelector('meta[name="description"]')
+        ?.setAttribute('content', page.value.frontmatter.description);
+    }
   },
-  watch: {
-    $page: {
-      handler() {
-        if (this.zoom && this.$page.relativePath !== 'index.md') {
-          setTimeout(() => {
-            this.zoom.listen('.prose img');
-          }, 500);
-        }
-        if (typeof document !== 'undefined') {
-          // @todo fix vitepress seo
-          document
-            .querySelector('meta[name="description"]')
-            ?.setAttribute('content', this.$page.frontmatter.description);
-        }
-      },
-      immediate: true,
-    },
-  },
-};
+  { immediate: true }
+);
 </script>
 
 <style>

@@ -15,10 +15,8 @@
           items-center
           justify-center
           text-gray-400
-          hover:text-gray-500
-          hover:bg-gray-100
-          focus:outline-none
-          focus:ring-2 focus:ring-inset focus:ring-green-500
+          hover:text-gray-500 hover:bg-gray-100
+          focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500
         "
       >
         <span class="sr-only">Open menu</span>
@@ -69,10 +67,8 @@
             items-center
             justify-center
             text-gray-400
-            hover:text-gray-500
-            hover:bg-gray-100
-            focus:outline-none
-            focus:ring-2 focus:ring-inset focus:ring-green-500
+            hover:text-gray-500 hover:bg-gray-100
+            focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500
           "
         >
           <span class="sr-only">Close menu</span>
@@ -100,34 +96,23 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
+import type { DefaultTheme } from 'vitepress';
 import NavBarLink from './NavBarLink.vue';
+import { ref, computed, watch } from 'vue';
+import { useSiteData, usePageData } from 'vitepress';
 
-export default {
-  components: {
-    NavBarLink,
-  },
-  data() {
-    return {
-      menuOpen: false,
-    };
-  },
-  watch: {
-    $page() {
-      this.menuOpen = false;
-    },
-  },
-  computed: {
-    navData() {
-      return this.$site.themeConfig.nav;
-    },
-    menuClasses() {
-      return this.menuOpen
-        ? ['opacity-100', 'scale-100', 'duration-200', 'ease-out']
-        : ['opacity-0', 'scale-95', 'duration-100', 'ease-in', 'pointer-events-none'];
-    },
-  },
-};
+const menuOpen = ref(false);
+const siteData = useSiteData<DefaultTheme.Config>();
+const page = usePageData();
+const navData = computed(() => siteData.value.themeConfig.nav);
+const menuClasses = computed(() =>
+  menuOpen.value
+    ? ['opacity-100', 'scale-100', 'duration-200', 'ease-out']
+    : ['opacity-0', 'scale-95', 'duration-100', 'ease-in', 'pointer-events-none']
+);
+
+watch(page, () => (menuOpen.value = false));
 </script>
 
 <style>
