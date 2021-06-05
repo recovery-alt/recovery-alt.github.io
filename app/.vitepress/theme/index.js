@@ -9,6 +9,9 @@ import Posts from './components/Posts.vue';
 import Zooming from 'zooming';
 // import * as Panelbear from '@panelbear/panelbear-js';
 import Pagination from './components/Pagination.vue';
+import Gitee from './icon/gitee.vue';
+import Github from './icon/github.vue';
+import Juejin from './icon/juejin.vue';
 
 const theme = {
   Layout,
@@ -16,6 +19,9 @@ const theme = {
   enhanceApp({ app }) {
     app.component('Posts', Posts);
     app.component('Pagination', Pagination);
+    app.component('Gitee', Gitee);
+    app.component('Github', Github);
+    app.component('Juejin', Juejin);
 
     // if we're in a server context then we exit out here
     if (typeof document === 'undefined' || typeof window === 'undefined') {

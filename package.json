@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@panelbear/panelbear-js": "^1.2.0",
+    "vite": "^2.3.6",
     "vue": "^3.0.11",
     "zooming": "^2.1.1"
   },

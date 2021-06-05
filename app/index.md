@@ -8,7 +8,7 @@ description: 'description'
   <span class="text-2xl ml-4">Hey, I'm Recovery 👋</span>
 </h1>
 
-一段介绍
+I'm a full stack developer. Actively trying to build new things with Node and Vue. Sharing my journey and learnings along the way.
 
 ## Blog
 
