@@ -208,3 +208,16 @@ f(i) = Math.max(f(i - 1) + nums[i], nums[i]);
 - `a ^ 0 === a`
 - `a ^ a === 0`
 - `a ^ b ^ a === b`
+
+### 相交链表
+
+[地址](https://leetcode-cn.com/problems/intersection-of-two-linked-lists/description/)
+
+双指针法
+
+```
+p1: headA => headA End => headB => node
+p2: headB => headB End => headA => node
+如果相交的话，则满足：
+a + (b - c) = b + (a - c)
+```
