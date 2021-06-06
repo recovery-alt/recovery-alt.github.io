@@ -11,9 +11,7 @@ head:
 
 Hey! My name is Recovery. Thank you for checking out my site 😊
 
-## Overview
-
-## Introduction
+## About Me
 
 I'm a postgraduate graduated from Ocean University of China in 2018. My major is geographic information system. But actually I don't like my major at all. So I choose to be a frontend developer since I was graduated, that is to say. I'm engaged in frontend development for 3 years. My journey covers Vue Typescript NodeJs and all kinds of fascinating tech.
 
