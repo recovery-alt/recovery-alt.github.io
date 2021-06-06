@@ -49,7 +49,7 @@
 import type { PropType } from 'vue';
 import { defineProps } from 'vue';
 import type { Post } from '../store';
-import PostTags from './PostTags.vue';
+import PostTags from './post-tags.vue';
 
 defineProps({
   post: {

@@ -32,7 +32,7 @@
 <script lang="ts" setup>
 import type { DefaultTheme } from 'vitepress';
 import { computed } from 'vue';
-import NavBarLinks from './NavBarLinks.vue';
+import NavBarLinks from './nav-bar-links.vue';
 import AlgoliaSearchBox from 'vitepress/dist/client/theme-default/components/AlgoliaSearchBox.vue';
 import { useSiteData, useSiteDataByRoute } from 'vitepress';
 

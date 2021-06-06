@@ -12,5 +12,5 @@ I'm a full stack developer. Actively trying to build new things with Node and Vu
 
 ## Blog
 
-<Posts/>
-<Pagination />
+<posts/>
+<pagination />

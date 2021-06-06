@@ -98,7 +98,7 @@
 
 <script lang="ts" setup>
 import type { DefaultTheme } from 'vitepress';
-import NavBarLink from './NavBarLink.vue';
+import NavBarLink from './nav-bar-link.vue';
 import { ref, computed, watch } from 'vue';
 import { useSiteData, usePageData } from 'vitepress';
 

@@ -3,12 +3,12 @@ import './styles/vars.css';
 import './styles/layout.css';
 import './styles/code.css';
 import './styles/custom-blocks.css';
-import Layout from './Layout.vue';
-import NotFound from './NotFound.vue';
-import Posts from './components/Posts.vue';
+import Layout from './layout.vue';
+import NotFound from './not-found.vue';
+import Posts from './components/posts.vue';
 import Zooming from 'zooming';
 // import * as Panelbear from '@panelbear/panelbear-js';
-import Pagination from './components/Pagination.vue';
+import Pagination from './components/pagination.vue';
 import Gitee from './icon/gitee.vue';
 import Github from './icon/github.vue';
 import Juejin from './icon/juejin.vue';
@@ -17,11 +17,11 @@ const theme = {
   Layout,
   NotFound,
   enhanceApp({ app }) {
-    app.component('Posts', Posts);
-    app.component('Pagination', Pagination);
-    app.component('Gitee', Gitee);
-    app.component('Github', Github);
-    app.component('Juejin', Juejin);
+    app.component('posts', Posts);
+    app.component('pagination', Pagination);
+    app.component('gitee', Gitee);
+    app.component('github', Github);
+    app.component('juejin', Juejin);
 
     // if we're in a server context then we exit out here
     if (typeof document === 'undefined' || typeof window === 'undefined') {
