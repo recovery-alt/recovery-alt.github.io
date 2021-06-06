@@ -12,10 +12,7 @@
       </p>
     </div>
     <div>
-      <nav
-        class="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
-        aria-label="Pagination"
-      >
+      <nav class="relative z-0 inline-flex rounded-md shadow-sm" aria-label="Pagination">
         <a
           href="#"
           @click="jumpPage(page.currentPage - 1)"
@@ -25,13 +22,13 @@
             relative
             inline-flex
             items-center
-            px-2
-            py-2
-            rounded-l-md
-            border border-gray-300
-            bg-white
+            px-1
+            py-1
+            border
             text-sm
             font-medium
+            bg-white
+            border-gray-300
             text-gray-500
             hover:bg-gray-50
           "
@@ -54,8 +51,23 @@
           href="#"
           v-for="item in page.totalPage"
           :key="item"
-          :class="getClasses(item)"
-          class="unstyled relative inline-flex items-center px-4 py-2 border text-sm font-medium"
+          class="
+            unstyled
+            relative
+            inline-flex
+            items-center
+            px-3
+            py-1
+            border
+            text-sm
+            font-medium
+            ml-2
+          "
+          :class="
+            page.currentPage === item
+              ? ['bg-indigo-50', 'border-indigo-500', 'text-indigo-600', 'z-10']
+              : ['bg-white', 'border-gray-300', 'text-gray-500', 'hover:bg-gray-50']
+          "
           @click="jumpPage(item)"
         >
           {{ item }}
@@ -69,13 +81,14 @@
             relative
             inline-flex
             items-center
-            px-2
-            py-2
-            rounded-r-md
-            border border-gray-300
-            bg-white
+            px-1
+            py-1
+            border
             text-sm
             font-medium
+            ml-2
+            bg-white
+            border-gray-300
             text-gray-500
             hover:bg-gray-50
           "
@@ -108,12 +121,6 @@ const end = computed(() => {
   const end = page.currentPage * page.pageSize;
   return end > page.total ? page.total : end;
 });
-
-const getClasses = (item: number) => {
-  return page.currentPage === item
-    ? ['bg-indigo-50', 'border-indigo-500', 'text-indigo-600', 'z-10']
-    : ['bg-white', 'border-gray-300', 'text-gray-500', 'hover:bg-gray-50'];
-};
 
 const jumpPage = (targetPage: number) => {
   if (page.currentPage !== targetPage && targetPage <= page.totalPage && targetPage >= 1)

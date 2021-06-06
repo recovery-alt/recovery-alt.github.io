@@ -1,4 +1,10 @@
-<svg class="inline-block" xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 600 600">
+<svg
+  class="inline-block"
+  xmlns="http://www.w3.org/2000/svg"
+  width="16"
+  height="16"
+  viewBox="0 0 600 600"
+>
   <title>Webpack logo</title>
   <path fill="#FFF" d="M300 .1L565 150v299.9L300 599.8 35 449.9V150z" />
   <path
