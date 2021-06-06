@@ -19,16 +19,7 @@
     </div>
     <footer class="px-5 sm:px-7 md:px-10 text-center text-gray-400 text-sm my-5">
       <div class="text-center mb-5">
-        <a
-          v-for="item in icons"
-          :key="item.name"
-          :href="item.url"
-          target="_blank"
-          class="unstyled transition-opacity inline-block opacity-70 hover:opacity-100 mr-5"
-          :title="`${item.name}: ${item.title}`"
-        >
-          <component :is="item.name" />
-        </a>
+        <icons />
       </div>
       <p class="mb-3">© 2021 Recovery, All rights reserved.</p>
     </footer>
@@ -42,17 +33,12 @@ import PostTags from './components/post-tags.vue';
 import { inject, computed, watch } from 'vue';
 import { postForPath } from './utils';
 import { useRoute, usePageData, Content, Debug } from 'vitepress';
+import icons from './components/icons.vue';
 
 const zoom = inject<any>('zoom');
 const route = useRoute();
 const post = computed(() => postForPath(route.path));
 const page = usePageData();
-
-const icons = [
-  { name: 'juejin', title: 'Recovery', url: 'https://juejin.cn/user/1838039174496135' },
-  { name: 'github', title: 'Recovery', url: 'https://github.com/cq360767996' },
-  { name: 'gitee', title: 'Recovery', url: 'https://gitee.com/cq360' },
-];
 
 watch(
   page,
