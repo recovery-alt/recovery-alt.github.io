@@ -3,13 +3,13 @@ import './styles/vars.css';
 import './styles/layout.css';
 import './styles/code.css';
 import './styles/custom-blocks.css';
+import Pagination from './components/pagination.vue';
+import Icons from './components/icons.vue';
 import Layout from './layout.vue';
 import NotFound from './not-found.vue';
 import Posts from './components/posts.vue';
 import Zooming from 'zooming';
 // import * as Panelbear from '@panelbear/panelbear-js';
-import Pagination from './components/pagination.vue';
-import Icons from './components/icons.vue';
 
 const theme = {
   Layout,

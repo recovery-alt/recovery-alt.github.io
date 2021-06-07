@@ -83,7 +83,7 @@ const posts: Array<Post> = [
     tags: ['LeetCode'],
   },
   {
-    url: '/blog/Vue/基于el-tree的虚拟滚动.html',
+    url: '/blog/vue/基于el-tree的虚拟滚动.html',
     title: '基于el-tree的虚拟滚动',
     date: '2021-03-15',
     excerpt: '基于element-tree实现的虚拟滚动思路',
