@@ -23,7 +23,7 @@
       </div>
       <p class="mb-3">© 2021 Recovery, All rights reserved.</p>
     </footer>
-    <Debug />
+    <Debug v-if="showDebug" />
   </div>
 </template>
 
@@ -39,6 +39,8 @@ const zoom = inject<any>('zoom');
 const route = useRoute();
 const post = computed(() => postForPath(route.path));
 const page = usePageData();
+
+const showDebug = computed(() => import.meta.env.DEV);
 
 watch(
   page,

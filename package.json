@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "export NODE_ENV=development; vitepress dev app --host",
-    "build": "export NODE_ENV=production; vitepress build app"
+    "build": "export NODE_ENV=production; vitepress build app",
+    "postinstall": "husky install"
   },
   "dependencies": {
     "@panelbear/panelbear-js": "^1.2.0",
