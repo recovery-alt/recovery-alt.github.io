@@ -18,10 +18,9 @@ module.exports = {
       { text: 'Contact', link: '/contact/' },
     ],
     algolia: {
-      applicationID: 'JMG2GX9DBP',
-      apiKey: '9b72ed3b2cc5b4f8fd8f21f78685f840',
+      appId: 'M9DXM4AY1Y',
+      apiKey: '0fb5a98219c616ace82a6da4a25bb097',
       indexName: 'blog',
-      chunkSize: 5000,
     },
   },
 };

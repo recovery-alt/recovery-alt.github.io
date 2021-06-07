@@ -221,3 +221,26 @@ p2: headB => headB End => headA => node
 如果相交的话，则满足：
 a + (b - c) = b + (a - c)
 ```
+
+### 多数元素
+
+[地址](https://leetcode-cn.com/problems/majority-element/description/)
+
+思路一：hash table
+时间复杂度：O(n)
+空间复杂度：O(n)
+
+思路二：打分法
+遍历，然后给每一个元素打分，等于 candidate 记为 1，不等于记为-1，`count===0`表示需要变更`candidate`
+核心思想就是多数是大于`n / 2`，所以通过消除法，最后剩余的肯定是最多的数
+
+### 阶乘后的零
+
+[地址](https://leetcode-cn.com/problems/factorial-trailing-zeroes/)
+
+规律就是
+每隔 5 个数出现一次 0，所以总数应该是 n / 5
+但是每隔 25 个数又会额外多处一个 1 一个 0
+每隔 625 个数又会额外多处一个 0
+以此类推
+总数 = n / 5 + n / 25 + n / 625 +++

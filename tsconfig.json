@@ -13,10 +13,14 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": false,
     "baseUrl": ".",
-    "paths": { "@/*": ["packages/client/src/*"] },
+    "paths": { "@/*": ["app/.vitepress/theme/*"] },
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
     "types": ["vite/client"]
   },
-  "include": ["app/.vitepress/**/*.ts", "app/.vitepress/**/*.tsx", "app/.vitepress/**/*.vue"],
-  "exclude": ["node_modules"]
+  "include": [
+    "app/.vitepress/**/*.ts",
+    "app/.vitepress/**/*.tsx",
+    "app/.vitepress/**/*.vue",
+    "node_modules/vitepress/dist/client/theme-default/components/AlgoliaSearchBox.vue"
+  ]
 }
