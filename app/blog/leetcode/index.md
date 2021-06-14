@@ -262,3 +262,39 @@ a + (b - c) = b + (a - c)
 5. toString(2)可以将十进制转换成二进制，带正负号。。
 
 无符号右移 0 作用 [地址](https://www.jianshu.com/p/588eb74b5a03)
+
+### 快乐数
+
+[地址](https://leetcode-cn.com/problems/happy-number/description/)
+
+思路一：哈希表，缓存所有值
+思路二：可以理解为一个循环指针
+
+### 计算质数
+
+[地址](https://leetcode-cn.com/problems/count-primes/)
+
+思路一：暴力法
+思路二：依此遍历，如果 i 是质数，则 i 的 x 倍是合数，缓存结果减少计算
+
+### 反转链表
+
+[地址](https://leetcode-cn.com/problems/reverse-linked-list/)
+思路一：迭代
+思路二：递归，归的过程需要反转两个链表`head.next.next = head; head.next = null;`
+
+### 汇总区间
+
+[地址](https://leetcode-cn.com/problems/summary-ranges/)
+
+读清楚题目，要求是连续就收起来，不连续就单独放
+`0 1 2 4 5 7`
+`0 1 2`连续 => `0->2`
+`4 5` 连续 => `4->5`
+`7` => `7`
+
+### 2 的幂
+
+[地址](https://leetcode-cn.com/problems/power-of-two/)
+2 的幂满足二进制表示的时候只有一个 1，且在最高位
+所以可以判断`n & (n - 1)`是否等于 0 来求解

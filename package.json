@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@panelbear/panelbear-js": "^1.2.0",
-    "vite": "^2.3.7",
     "vue": "^3.1.1",
     "zooming": "^2.1.1"
   },
@@ -22,9 +21,10 @@
     "husky": "^6.0.0",
     "less": "^4.1.1",
     "lint-staged": "^11.0.0",
-    "postcss": "^8.3.0",
+    "postcss": "^8.3.4",
     "prettier": "^2.3.1",
     "tailwindcss": "^2.1.4",
+    "vite": "^2.3.7",
     "vitepress": "^0.14.1",
     "vue-tsc": "^0.1.7"
   },
