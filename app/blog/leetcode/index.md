@@ -180,16 +180,19 @@ f(i) = Math.max(f(i - 1) + nums[i], nums[i]);
 ### 最后一个单词的长度
 
 [地址](https://leetcode-cn.com/problems/length-of-last-word/)
+
 思路从右往左遍历，先去除所有空格，再计算长度，再次遇到空格或者 i=0 输出结果
 
 ### x 的平方根
 
 [地址](https://leetcode-cn.com/problems/sqrtx/)
+
 二分查找,对比`mid * mid`和`x`的大小，`mid * mid < x`
 
 ### 合并两个有序数组
 
 [地址](https://leetcode-cn.com/problems/merge-sorted-array/)
+
 双指针法
 从前往后遍历需要额外的空间
 时间复杂度：O(m+n)
@@ -203,6 +206,7 @@ f(i) = Math.max(f(i - 1) + nums[i], nums[i]);
 ### 只出现一次的数字
 
 [地址](https://leetcode-cn.com/problems/single-number/)
+
 使用异或运算符`^`，具备以下特点
 
 - `a ^ 0 === a`
@@ -226,24 +230,25 @@ a + (b - c) = b + (a - c)
 
 [地址](https://leetcode-cn.com/problems/majority-element/description/)
 
-思路一：hash table
-时间复杂度：O(n)
-空间复杂度：O(n)
+- 思路一：hash table
+  时间复杂度：O(n)
+  空间复杂度：O(n)
 
-思路二：打分法
-遍历，然后给每一个元素打分，等于 candidate 记为 1，不等于记为-1，`count===0`表示需要变更`candidate`
-核心思想就是多数是大于`n / 2`，所以通过消除法，最后剩余的肯定是最多的数
+- 思路二：打分法
+  遍历，然后给每一个元素打分，等于 candidate 记为 1，不等于记为-1，`count===0`表示需要变更`candidate`
+  核心思想就是多数是大于`n / 2`，所以通过消除法，最后剩余的肯定是最多的数
 
 ### 阶乘后的零
 
 [地址](https://leetcode-cn.com/problems/factorial-trailing-zeroes/)
 
 规律就是
-每隔 5 个数出现一次 0，所以总数应该是 n / 5
-但是每隔 25 个数又会额外多处一个 1 一个 0
-每隔 625 个数又会额外多处一个 0
-以此类推
-总数 = n / 5 + n / 25 + n / 625 +++
+
+- 每隔 5 个数出现一次 0，所以总数应该是 n / 5
+- 但是每隔 25 个数又会额外多处一个 1 一个 0
+- 每隔 625 个数又会额外多处一个 0
+- 以此类推
+- 总数 = n / 5 + n / 25 + n / 625 +++
 
 ### 颠倒二进制位
 
@@ -267,21 +272,22 @@ a + (b - c) = b + (a - c)
 
 [地址](https://leetcode-cn.com/problems/happy-number/description/)
 
-思路一：哈希表，缓存所有值
-思路二：可以理解为一个循环指针
+- 思路一：哈希表，缓存所有值
+- 思路二：可以理解为一个循环指针
 
 ### 计算质数
 
 [地址](https://leetcode-cn.com/problems/count-primes/)
 
-思路一：暴力法
-思路二：依此遍历，如果 i 是质数，则 i 的 x 倍是合数，缓存结果减少计算
+- 思路一：暴力法
+- 思路二：依此遍历，如果 i 是质数，则 i 的 x 倍是合数，缓存结果减少计算
 
 ### 反转链表
 
 [地址](https://leetcode-cn.com/problems/reverse-linked-list/)
-思路一：迭代
-思路二：递归，归的过程需要反转两个链表`head.next.next = head; head.next = null;`
+
+- 思路一：迭代
+- 思路二：递归，归的过程需要反转两个链表`head.next.next = head; head.next = null;`
 
 ### 汇总区间
 
@@ -296,6 +302,7 @@ a + (b - c) = b + (a - c)
 ### 2 的幂
 
 [地址](https://leetcode-cn.com/problems/power-of-two/)
+
 2 的幂满足二进制表示的时候只有一个 1，且在最高位
 所以可以判断`n & (n - 1)`是否等于 0 来求解
 
@@ -303,13 +310,20 @@ a + (b - c) = b + (a - c)
 
 [地址](https://leetcode-cn.com/problems/palindrome-linked-list/)
 
-思路一：转为数组，然后循环判断是否回文
-思路二：快慢指针，找到中点并且反转前半部分 => 对比反转链表和剩余链表的值
+- 思路一：转为数组，然后循环判断是否回文
+- 思路二：快慢指针，找到中点并且反转前半部分 => 对比反转链表和剩余链表的值
 
 ### 二叉搜索树的最近公共祖先
 
 [地址](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
 
-思路一：先找到 p 和 q 节点的路径，再对比找到最后一个相等的节点就是高度最低的节点
-思路二：如果 p 和 q 都当前节点小，`node = node.left`，如果都比当前节点大`node = node.right`，找到介于两者之间的值就是结果
-思路三：递归实现思路二
+- 思路一：先找到 p 和 q 节点的路径，再对比找到最后一个相等的节点就是高度最低的节点
+- 思路二：如果 p 和 q 都当前节点小，`node = node.left`，如果都比当前节点大`node = node.right`，找到介于两者之间的值就是结果
+- 思路三：递归实现思路二
+
+### 各数相加
+
+[地址](https://leetcode-cn.com/problems/add-digits/)
+
+- 思路一：循环+递归
+- 思路二：可以理解为除以 9 的余数
