@@ -298,3 +298,18 @@ a + (b - c) = b + (a - c)
 [地址](https://leetcode-cn.com/problems/power-of-two/)
 2 的幂满足二进制表示的时候只有一个 1，且在最高位
 所以可以判断`n & (n - 1)`是否等于 0 来求解
+
+### 回文链表
+
+[地址](https://leetcode-cn.com/problems/palindrome-linked-list/)
+
+思路一：转为数组，然后循环判断是否回文
+思路二：快慢指针，找到中点并且反转前半部分 => 对比反转链表和剩余链表的值
+
+### 二叉搜索树的最近公共祖先
+
+[地址](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-search-tree/)
+
+思路一：先找到 p 和 q 节点的路径，再对比找到最后一个相等的节点就是高度最低的节点
+思路二：如果 p 和 q 都当前节点小，`node = node.left`，如果都比当前节点大`node = node.right`，找到介于两者之间的值就是结果
+思路三：递归实现思路二
