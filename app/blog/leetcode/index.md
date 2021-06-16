@@ -327,3 +327,40 @@ a + (b - c) = b + (a - c)
 
 - 思路一：循环+递归
 - 思路二：可以理解为除以 9 的余数
+
+## 丑数
+
+[地址](https://leetcode-cn.com/problems/ugly-number/)
+
+1. 丑数大于 0
+2. 丑数只能被 2、3、5 整除
+3. 1 被视为丑数
+
+### 丢失的数字
+
+[地址](https://leetcode-cn.com/problems/missing-number/)
+
+- 思路一：排序，然后对比下标和值
+- 思路二：异或运算
+- 思路三：求`0-n`的和，减去所有值的和就是结果
+
+```
+0 ^ 0 ^ 1 ^ 1 ^ 2 ^ 3 ^ 3 => 2
+```
+
+### 第一个错误的版本
+
+[地址](https://leetcode-cn.com/problems/first-bad-version/)
+
+二分求中位数
+
+```js
+const mid = Math.floor(start + (end - start) / 2);
+```
+
+### 移动零
+
+[地址](https://leetcode-cn.com/problems/move-zeroes/)
+
+- 思路一：计数器，遇到 0 就`counter++`，非 0 就`nums[i - couter] = nums[i] nums[i] = 0`
+- 思路二：双指针，一个指针正常走，另一个遇到非 0 的值加一，并`nums[j++] = nums[i]`
