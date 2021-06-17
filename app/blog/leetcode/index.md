@@ -364,3 +364,18 @@ const mid = Math.floor(start + (end - start) / 2);
 
 - 思路一：计数器，遇到 0 就`counter++`，非 0 就`nums[i - couter] = nums[i] nums[i] = 0`
 - 思路二：双指针，一个指针正常走，另一个遇到非 0 的值加一，并`nums[j++] = nums[i]`
+
+### 比特位计数
+
+[地址](https://leetcode-cn.com/problems/counting-bits/)
+
+- 思路一：直接遍历，与 1 取并输出结果
+- 思路二：dp，转移方程是`dp[i] = dp[i / 2] + (i & 1)`
+- 思路三：dp，转移方程是`dp[i] = dp[i & (i - 1)] + 1`
+- 思路四：
+  - 奇数就等于前一个加一
+  - 偶数就等于`i >> 1`
+
+:::tip
+这道题除了第一种思路，都是用一些方法来减少计算，中间有很多计算结果，可以避免重复计算
+:::
