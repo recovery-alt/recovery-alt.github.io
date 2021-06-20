@@ -379,3 +379,25 @@ const mid = Math.floor(start + (end - start) / 2);
 :::tip
 这道题除了第一种思路，都是用一些方法来减少计算，中间有很多计算结果，可以避免重复计算
 :::
+
+### 4-的幂
+
+[地址](https://leetcode-cn.com/problems/power-of-four/)
+
+- 思路一：直接循环除以 4
+- 思路二：4 的 n 次方取模 3 为 1，4 的 n 次方\*2 取模 3 为 2，所以通过取模可以得到结果
+- 思路三：`n & n - 1`并且`n & 0xaaaaaaaa === 0`
+
+### 两个数组的交集
+
+[地址](https://leetcode-cn.com/problems/intersection-of-two-arrays/)
+
+- 思路一：暴力法+哈希表，直接`O(M*N)`
+- 思路二：先排序，再双指针比较
+
+## 找不同
+
+[地址](https://leetcode-cn.com/problems/find-the-difference/)
+
+- 思路一： 把其中一个转成哈希表
+- 思路二：利用位运算符的异或运算，类似[只出现一次的数字](https://leetcode-cn.com/problems/single-number/)
