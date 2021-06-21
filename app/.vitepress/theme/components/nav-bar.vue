@@ -9,7 +9,7 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          fill="rgb(5, 150, 105)"
+          fill="var(--c-logo)"
           d="M50.4,-15.8C59.3,10.9,56.2,42.1,36,58.9C15.9,75.8,-21.4,78.3,-41.8,62.4C-62.2,46.4,-65.8,11.9,-56,-16C-46.2,-43.9,-23.1,-65.4,-1.2,-65C20.8,-64.6,41.5,-42.4,50.4,-15.8Z"
           transform="translate(100 100)"
         />
@@ -53,7 +53,7 @@ const theme = computed(() => siteData.value.themeConfig);
 .logo {
   position: relative;
   font-size: 1.8em !important;
-  color: rgb(5, 150, 105) !important;
+  color: var(--c-logo) !important;
   z-index: 1;
 }
 </style>

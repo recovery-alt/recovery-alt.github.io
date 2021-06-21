@@ -1,5 +1,5 @@
-import './styles/main.less';
 import './styles/vars.css';
+import './styles/main.less';
 import './styles/layout.css';
 import './styles/code.css';
 import './styles/custom-blocks.css';

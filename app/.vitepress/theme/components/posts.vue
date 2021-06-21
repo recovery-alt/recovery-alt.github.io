@@ -42,7 +42,7 @@ route.path.replace('/index.html', '/');
     height: 30px;
     width: 100%;
     position: absolute;
-    background-color: rgb(5, 150, 105);
+    background-color: var(--c-logo);
     transition: 0.2s;
     opacity: 0;
     top: 30px;

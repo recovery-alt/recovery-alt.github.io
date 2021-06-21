@@ -23,6 +23,7 @@
       </div>
       <p class="mb-3">© 2021 Recovery, All rights reserved.</p>
     </footer>
+    <BackToTop />
     <Debug v-if="showDebug" />
   </div>
 </template>
@@ -34,6 +35,7 @@ import { inject, computed, watch } from 'vue';
 import { postForPath } from './utils';
 import { useRoute, usePageData, Content, Debug } from 'vitepress';
 import icons from './components/icons.vue';
+import BackToTop from './components/back-to-top.vue';
 
 const zoom = inject<any>('zoom');
 const route = useRoute();
