@@ -3,9 +3,9 @@ title: webpack优化
 date: 2020-09-09
 sidebar: 'auto'
 categories:
-  - webpack
+  - Webpack
 tags:
-  - webpack
+  - Webpack
 ---
 
 ## webpack 构建流程

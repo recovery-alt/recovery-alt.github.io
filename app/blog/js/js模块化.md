@@ -3,9 +3,9 @@ title: js模块化
 date: 2020-09-04
 sidebar: 'auto'
 categories:
-  - js
+  - JavaScript
 tags:
-  - js
+  - JavaScript
 ---
 
 ## 前端模块化方案
@@ -503,7 +503,7 @@ const a = require('a.js').default;
 
 ## 参考文档
 
-- [Javascript 模块化编程（三）：require.js 的用法](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
+- [JavaScript 模块化编程（三）：require.js 的用法](http://www.ruanyifeng.com/blog/2012/11/require_js.html)
 - [seajs 官方文档](https://seajs.github.io/seajs/docs/#intro)
 - [JavaScript 模块化规范（CommonJs AMD CMD UMD ES6）](https://juejin.im/post/6844904029454073864#heading-8)
 - [JavaScript 标准参考教程（alpha）](https://javascript.ruanyifeng.com/nodejs/module.html#toc0)

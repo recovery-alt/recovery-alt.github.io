@@ -9,10 +9,10 @@ type Tag =
   | 'React'
   | 'Vite'
   | 'Rollup'
-  | 'Typescript'
+  | 'TypeScript'
   | 'ESLint'
   | 'Chrome'
-  | 'Javascript'
+  | 'JavaScript'
   | 'LeetCode';
 
 export type Post = {
@@ -48,7 +48,7 @@ const posts: Array<Post> = [
     date: '2020-09-09',
     excerpt: '个人理解的一些前端性能优化方法',
     readMins: 8,
-    tags: ['Javascript'],
+    tags: ['JavaScript'],
   },
   {
     url: '/blog/js/手写系列.html',
@@ -56,7 +56,7 @@ const posts: Array<Post> = [
     date: '2020-09-08',
     excerpt: '手写常用函数的功能，主要是es3的内容',
     readMins: 8,
-    tags: ['Javascript'],
+    tags: ['JavaScript'],
   },
   {
     url: '/blog/js/手写promise.html',
@@ -64,7 +64,7 @@ const posts: Array<Post> = [
     date: '2020-07-16',
     excerpt: '从零开始实现一个Promise',
     readMins: 8,
-    tags: ['Javascript'],
+    tags: ['JavaScript'],
   },
   {
     url: '/blog/js/js模块化.html',
@@ -72,7 +72,7 @@ const posts: Array<Post> = [
     date: '2020-09-04',
     excerpt: '深入浅出介绍js的模块化机制，包含手写CommonJS规范',
     readMins: 8,
-    tags: ['Javascript'],
+    tags: ['JavaScript'],
   },
   {
     url: '/blog/leetcode/',
@@ -112,7 +112,7 @@ const posts: Array<Post> = [
     date: '2020-09-16',
     excerpt: '记录自己的面试之旅',
     readMins: 8,
-    tags: ['Javascript', 'Typescript', 'Webpack', 'Vue', 'React'],
+    tags: ['JavaScript', 'TypeScript', 'Webpack', 'Vue', 'React'],
   },
 ];
 

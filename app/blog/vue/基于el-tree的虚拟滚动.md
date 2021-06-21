@@ -3,9 +3,9 @@ title: 基于el-tree的虚拟滚动
 date: 2021-03-15
 sidebar: 'auto'
 categories:
-  - vue
+  - Vue
 tags:
-  - vue
+  - Vue
 ---
 
 ## 思路

@@ -3,9 +3,9 @@ title: 记录力扣日常
 date: 2021-04-09
 sidebar: 'auto'
 categories:
-  - leetcode
+  - LeetCode
 tags:
-  - leetcode
+  - LeetCode
 ---
 
 ## easy
@@ -328,7 +328,7 @@ a + (b - c) = b + (a - c)
 - 思路一：循环+递归
 - 思路二：可以理解为除以 9 的余数
 
-## 丑数
+### 丑数
 
 [地址](https://leetcode-cn.com/problems/ugly-number/)
 
@@ -395,7 +395,7 @@ const mid = Math.floor(start + (end - start) / 2);
 - 思路一：暴力法+哈希表，直接`O(M*N)`
 - 思路二：先排序，再双指针比较
 
-## 找不同
+### 找不同
 
 [地址](https://leetcode-cn.com/problems/find-the-difference/)
 

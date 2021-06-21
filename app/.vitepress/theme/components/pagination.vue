@@ -53,8 +53,8 @@
           :key="item"
           :class="`unstyled relative inline-flex items-center px-3 py-1 border text-sm font-medium ml-2 ${
             page.currentPage === item
-              ? `bg-indigo-50 border-indigo-500 text-indigo-600 z-10`
-              : `bg-white border-gray-300 text-gray-500 hover:bg-gray-50`
+              ? `bg-indigo-50 border-green-500 z-10`
+              : `bg-white border-gray-300 hover:bg-gray-50`
           }`"
           @click="jumpPage(item)"
         >

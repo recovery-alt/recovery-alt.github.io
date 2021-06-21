@@ -3,9 +3,9 @@ title: 手写Promise
 date: 2020-07-16
 sidebar: 'auto'
 categories:
-  - js
+  - JavaScript
 tags:
-  - js
+  - JavaScript
 ---
 
 ## 先做一道题
