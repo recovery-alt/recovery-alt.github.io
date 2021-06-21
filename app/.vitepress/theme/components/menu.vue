@@ -1,5 +1,5 @@
 <template>
-  <nav class="menu-box">
+  <nav class="nav-bar">
     <ul class="menu">
       <li v-for="item in headers" :key="item.slug" :title="item.title" class="menu-item">
         <a :href="`#${item.slug}`">
@@ -22,15 +22,10 @@ const headers = computed<Array<{ level: number; title: string; slug: string }>>(
 </script>
 
 <style lang="less" scoped>
-.menu {
-  &-box {
-    position: absolute;
-    right: 0;
-    top: 0;
-    max-width: 300px;
-  }
-
-  &-item {
-  }
+.nav-bar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  max-width: 300px;
 }
 </style>

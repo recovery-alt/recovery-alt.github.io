@@ -30,13 +30,6 @@
     "vitepress": "^0.14.1",
     "vue-tsc": "^0.1.7"
   },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "es5",
-    "printWidth": 100,
-    "semi": true,
-    "arrowParens": "avoid"
-  },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue,css,html,less,json,md}": "prettier -w"
   },

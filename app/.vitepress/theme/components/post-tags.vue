@@ -2,7 +2,7 @@
   <div class="text-xs flex">
     <span v-for="tag in post.tags" :key="tag" class="flex items-center mr-2">
       <img
-        class="inline-block mr-1"
+        class="inline-block mr-1 --exclude"
         style="margin-top: 0; margin-bottom: 0"
         :src="getIcon(tag)"
         :alt="tag"

@@ -25,6 +25,7 @@
     </footer>
     <BackToTop />
     <Debug v-if="showDebug" />
+    <!-- <Menu></Menu> -->
   </div>
 </template>
 
@@ -36,6 +37,7 @@ import { postForPath } from './utils';
 import { useRoute, usePageData, Content, Debug } from 'vitepress';
 import icons from './components/icons.vue';
 import BackToTop from './components/back-to-top.vue';
+// import Menu from './components/menu.vue';
 
 const zoom = inject<any>('zoom');
 const route = useRoute();
@@ -49,7 +51,7 @@ watch(
   () => {
     if (zoom && page.value.relativePath !== 'index.md') {
       setTimeout(() => {
-        zoom.listen('.prose img');
+        zoom.listen('.prose img:not(.--exclude)');
       }, 500);
     }
     if (typeof document !== 'undefined') {
