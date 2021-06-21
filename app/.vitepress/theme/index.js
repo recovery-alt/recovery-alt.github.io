@@ -9,7 +9,7 @@ import Layout from './layout.vue';
 import NotFound from './not-found.vue';
 import Posts from './components/posts.vue';
 import Zooming from 'zooming';
-// import * as Panelbear from '@panelbear/panelbear-js';
+import * as Panelbear from '@panelbear/panelbear-js';
 
 const theme = {
   Layout,
@@ -32,12 +32,12 @@ const theme = {
     app.provide('zoom', zooming);
 
     // analytics
-    // app.provide('analytics', Panelbear);
-    // Panelbear.load(import.meta.env.VITE_PANELBEAR_ID, {
-    //   spaMode: 'history',
-    //   autoTrack: true,
-    //   debug: import.meta.env.DEV,
-    // });
+    app.provide('analytics', Panelbear);
+    Panelbear.load(import.meta.env.VITE_PANELBEAR_ID, {
+      spaMode: 'history',
+      autoTrack: true,
+      debug: import.meta.env.DEV,
+    });
   },
 };
 export default theme;
