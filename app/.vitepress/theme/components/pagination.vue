@@ -51,19 +51,11 @@
           href="#"
           v-for="item in page.totalPage"
           :key="item"
-          class="
-            unstyled
-            relative
-            inline-flex
-            items-center
-            px-3
-            py-1
-            border
-            text-sm
-            font-medium
-            ml-2
-          "
-          :class="getClasses(item)"
+          :class="`unstyled relative inline-flex items-center px-3 py-1 border text-sm font-medium ml-2 ${
+            page.currentPage === item
+              ? `bg-indigo-50 border-indigo-500 text-indigo-600 z-10`
+              : `bg-white border-gray-300 text-gray-500 hover:bg-gray-50`
+          }`"
           @click="jumpPage(item)"
         >
           {{ item }}
@@ -117,11 +109,6 @@ const end = computed(() => {
   const end = page.currentPage * page.pageSize;
   return end > page.total ? page.total : end;
 });
-
-const getClasses = (item: number) =>
-  page.currentPage === item
-    ? ['bg-indigo-50', 'border-indigo-500', 'text-indigo-600', 'z-10']
-    : ['bg-white', 'border-gray-300', 'text-gray-500', 'hover:bg-gray-50'];
 
 const jumpPage = (targetPage: number) => {
   if (page.currentPage !== targetPage && targetPage <= page.totalPage && targetPage >= 1)

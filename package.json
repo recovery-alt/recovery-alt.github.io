@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "export NODE_ENV=development; vitepress dev app --host",
+    "dev": "export NODE_ENV=production; vitepress dev app --host",
     "build": "export NODE_ENV=production; vitepress build app",
     "postinstall": "husky install"
   },
