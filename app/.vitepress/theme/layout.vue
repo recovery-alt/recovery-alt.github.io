@@ -1,5 +1,6 @@
 <template>
   <div class="theme">
+    <header class="nav-bar"></header>
     <div class="bg-gray-50 px-5 sm:px-7 md:px-10">
       <div class="prose md:prose-xl prose-green mx-auto">
         <header class="navbar mb-10 sm:mb-16 md:mb-20">
@@ -25,7 +26,7 @@
     </footer>
     <BackToTop />
     <Debug v-if="showDebug" />
-    <!-- <Menu></Menu> -->
+    <Menu v-if="!isIndexPage" />
   </div>
 </template>
 
@@ -37,7 +38,7 @@ import { postForPath } from './utils';
 import { useRoute, usePageData, Content, Debug } from 'vitepress';
 import icons from './components/icons.vue';
 import BackToTop from './components/back-to-top.vue';
-// import Menu from './components/menu.vue';
+import Menu from './components/menu.vue';
 
 const zoom = inject<any>('zoom');
 const route = useRoute();
@@ -45,11 +46,14 @@ const post = computed(() => postForPath(route.path));
 const page = usePageData();
 
 const showDebug = computed(() => import.meta.env.DEV);
+const isIndexPage = computed(() =>
+  ['index.md', 'contact/index.md', 'about/index.md'].includes(page.value.relativePath)
+);
 
 watch(
   page,
   () => {
-    if (zoom && page.value.relativePath !== 'index.md') {
+    if (zoom && isIndexPage.value) {
       setTimeout(() => {
         zoom.listen('.prose img:not(.--exclude)');
       }, 500);
@@ -68,5 +72,24 @@ watch(
 <style>
 .theme {
   min-height: calc(100vh - 80px);
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.7rem 1.5rem 0.7rem 4rem;
+  height: var(--header-height);
+}
+
+@media (min-width: 720px) {
+  .nav-bar {
+    padding: 0.7rem 1.5rem;
+  }
 }
 </style>

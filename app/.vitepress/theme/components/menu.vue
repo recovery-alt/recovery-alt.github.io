@@ -1,7 +1,13 @@
 <template>
-  <nav class="nav-bar">
-    <ul class="menu">
-      <li v-for="item in headers" :key="item.slug" :title="item.title" class="menu-item">
+  <nav class="menu">
+    <ul>
+      <li
+        v-for="item in headers"
+        :key="item.slug"
+        :title="item.title"
+        class="menu-item"
+        :style="{ paddingLeft: item.level - 2 + 'rem' }"
+      >
         <a :href="`#${item.slug}`">
           {{ item.title }}
         </a>
@@ -14,18 +20,35 @@
 import { usePageData } from 'vitepress';
 import { computed } from 'vue';
 
-const page = usePageData();
+type Header = { level: number; title: string; slug: string };
 
-const headers = computed<Array<{ level: number; title: string; slug: string }>>(
-  () => page.value.headers
-);
+const page = usePageData();
+const headers = computed<Array<Header>>(() => page.value.headers);
 </script>
 
 <style lang="less" scoped>
-.nav-bar {
-  position: absolute;
-  right: 0;
-  top: 0;
-  max-width: 300px;
+.menu {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 2.5rem;
+  max-height: 30rem;
+  max-width: 15rem;
+  overflow-y: auto;
+
+  &-item {
+    font-size: 1.167rem;
+    list-style: none;
+    line-height: 1.8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 1200px) {
+  .menu {
+    display: none;
+  }
 }
 </style>
