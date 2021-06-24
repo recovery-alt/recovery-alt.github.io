@@ -401,3 +401,106 @@ const mid = Math.floor(start + (end - start) / 2);
 
 - 思路一： 把其中一个转成哈希表
 - 思路二：利用位运算符的异或运算，类似[只出现一次的数字](https://leetcode-cn.com/problems/single-number/)
+
+### 二进制手表
+
+[地址](https://leetcode-cn.com/problems/binary-watch/)
+
+- 枚举所有时间，即 12 小时 60 分钟，然后计算出其中二进制位为 1 的数量
+- 枚举`2 ** 10`，取出高 4 位和低 6 位的值，分别计算是否在 12 和 60 以内
+
+### 数字转换为十六进制数
+
+[地址](https://leetcode-cn.com/problems/convert-a-number-to-hexadecimal/)
+
+- 思路一：循环除以 16，取余数
+- 思路二：使用位运算符
+
+:::tip
+遇到`2 ** n`问题，首先可以考虑位运算符，提升运算效率
+:::
+
+### 排列硬币
+
+[地址](https://leetcode-cn.com/problems/arranging-coins/)
+
+思路一：直接迭代，求前 m 项和，直到前 m 项和大于 n，就输出 n - 1
+思路二：二分查找
+
+### 找到所有数组中消失的数字
+
+[地址](https://leetcode-cn.com/problems/find-all-numbers-disappeared-in-an-array/)
+
+两次遍历
+
+- 第一次需要把原数组中需要剔除的数加上 len 的倍数
+- 第二次只需要找出数组中小于 len 的索引并-1
+
+### 重复的子字符串
+
+[地址](https://leetcode-cn.com/problems/repeated-substring-pattern/)
+
+- 暴力法，直接挨个比对，i 从 `1 => n / 2`，**比较难想到的是**对比`s[j]`和`s[j - i]`，
+- 将字符串`s`自加`s + s`，然后判断字符串`s`的第 1 个索引`s.indexOf(s, 1)`是否与`s`的长度相等，相等则返回 false
+- [KMP 算法](https://zhuanlan.zhihu.com/p/83334559)
+
+### 岛屿的周长
+
+[地址](https://leetcode-cn.com/problems/island-perimeter/)
+
+- 思路一：直接遍历，然后推倒右侧/下侧是否为 1，是的话就-2
+- 思路二：深度优先遍历(DFS)
+
+### 提莫攻击
+
+[地址](https://leetcode-cn.com/problems/teemo-attacking/)
+
+关键点在于间隔时间是否大于持续时间，如果持续时间小于间隔就加上持续时间，反之则加上时间间隔，最后再加上持续时间
+
+### 二叉搜索树中的众数
+
+[地址](https://leetcode-cn.com/problems/find-mode-in-binary-search-tree/)
+
+- 思路一：直接深度优先遍历，存到 map，然后再排序，输出前几项一样大结果
+- 思路二：中序遍历，然后记录连续的数，做一定判断
+- 思路三： Morris 中序遍历
+
+**Morris 核心思路**
+
+- 如果当前节点没有左子树，则遍历这个点，然后跳转到当前节点的右子树。
+- 如果当前节点有左子树，那么它的前驱节点一定在左子树上，我们可以在左子树上一直向右行走，找到当前点的前驱节点。
+  - 如果前驱节点没有右子树，就将前驱节点的 right 指针指向当前节点。这一步是为了在遍历完前驱节点后能找到前驱节点的后继，也就是当前节点。
+  - 如果前驱节点的右子树为当前节点，说明前驱节点已经被遍历过并被修改了 right 指针，这个时候我们重新将前驱的右孩子设置为空，遍历当前的点，然后跳转到当前节点的右子树。
+
+```js
+while (node) {
+  // 左节点不存在，直接处理当前节点，然后指针移到右节点
+  if (!node.left) {
+    update(node.val);
+    node = node.right;
+    continue;
+  }
+
+  // 左节点存在，将pre指针指向左节点
+  pre = node.left;
+  // 一直向右走，找到前驱节点
+  while (pre.right && pre.right !== node) {
+    pre = pre.right;
+  }
+
+  // 如果前驱节点没有右节点，就把让前驱的right节点指向当前节点
+  if (!pre.right) {
+    pre.right = node;
+    node = node.left;
+  } else {
+    // 恢复设置的节点
+    pre.right = null;
+    update(node.val);
+    node = node.right;
+  }
+}
+```
+
+:::tip
+遇到二叉搜索数，记得使用中序遍历，遍历的结果是一个有序数组
+:::
