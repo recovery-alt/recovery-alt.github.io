@@ -21,6 +21,6 @@
     "app/.vitepress/**/*.ts",
     "app/.vitepress/**/*.tsx",
     "app/.vitepress/**/*.vue",
-    "node_modules/vitepress/dist/client/theme-default/components/AlgoliaSearchBox.vue"
+    "node_modules/vitepress/dist/client/theme-default/components/*.vue"
   ]
 }

@@ -14,7 +14,7 @@
           transform="translate(100 100)"
         />
       </svg>
-      <a class="logo" :aria-label="siteData.title + ', back to home'" :href="siteData.base">
+      <a class="logo" :aria-label="site.title + ', back to home'" :href="site.base">
         <span class="font-bold font-header text-green-700">Recovery</span>
       </a>
     </div>
@@ -24,21 +24,19 @@
       v-if="theme.algolia"
       :options="theme.algolia"
       :multilang="!!theme.locales"
-      :key="siteRouteData.lang"
+      :key="site.lang"
     />
   </div>
 </template>
 
 <script lang="ts" setup>
-import type { DefaultTheme } from 'vitepress';
 import { computed } from 'vue';
 import NavBarLinks from './nav-bar-links.vue';
 import AlgoliaSearchBox from 'vitepress/dist/client/theme-default/components/AlgoliaSearchBox.vue';
-import { useSiteData, useSiteDataByRoute } from 'vitepress';
+import { useData } from 'vitepress';
 
-const siteData = useSiteData<DefaultTheme.Config>();
-const siteRouteData = useSiteDataByRoute();
-const theme = computed(() => siteData.value.themeConfig);
+const { site } = useData();
+const theme = computed(() => site.value.themeConfig);
 </script>
 
 <style lang="less">

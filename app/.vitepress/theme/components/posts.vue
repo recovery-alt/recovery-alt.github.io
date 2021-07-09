@@ -6,7 +6,7 @@
 
 <script lang="ts" setup>
 import { computedPosts } from '../store';
-import { useRoute } from 'vitepress/dist/client/app/router';
+import { useRoute } from 'vitepress';
 import CardPost from './card-post.vue';
 
 const route = useRoute();

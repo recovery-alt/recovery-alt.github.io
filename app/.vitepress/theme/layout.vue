@@ -1,6 +1,5 @@
 <template>
   <div class="theme">
-    <header class="nav-bar"></header>
     <div class="bg-gray-50 px-5 sm:px-7 md:px-10">
       <div class="prose md:prose-xl prose-green mx-auto">
         <header class="navbar mb-10 sm:mb-16 md:mb-20">
@@ -35,7 +34,7 @@ import NavBar from './components/nav-bar.vue';
 import PostTags from './components/post-tags.vue';
 import { inject, computed, watch } from 'vue';
 import { postForPath } from './utils';
-import { useRoute, usePageData, Content, Debug } from 'vitepress';
+import { useRoute, useData, Content, Debug } from 'vitepress';
 import icons from './components/icons.vue';
 import BackToTop from './components/back-to-top.vue';
 import Menu from './components/menu.vue';
@@ -43,7 +42,8 @@ import Menu from './components/menu.vue';
 const zoom = inject<any>('zoom');
 const route = useRoute();
 const post = computed(() => postForPath(route.path));
-const page = usePageData();
+const { page, frontmatter } = useData();
+console.log(frontmatter.value);
 
 const showDebug = computed(() => import.meta.env.DEV);
 const isIndexPage = computed(() =>
@@ -72,24 +72,5 @@ watch(
 <style>
 .theme {
   min-height: calc(100vh - 80px);
-}
-
-.nav-bar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
-  z-index: -1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.7rem 1.5rem 0.7rem 4rem;
-  height: var(--header-height);
-}
-
-@media (min-width: 720px) {
-  .nav-bar {
-    padding: 0.7rem 1.5rem;
-  }
 }
 </style>

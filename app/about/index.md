@@ -7,7 +7,7 @@ head:
       content: "My name's Recovery. "
 ---
 
-# {{ $page.title }}
+# About
 
 Hey! My name is Recovery. Thank you for checking out my site 😊
 

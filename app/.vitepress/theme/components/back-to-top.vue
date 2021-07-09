@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { debounce } from 'lodash';
+import debounce from 'lodash/debounce';
 import { defineProps, ref, computed, onMounted } from 'vue';
 
 const props = defineProps({
@@ -69,7 +69,7 @@ onMounted(() => {
   z-index: 1;
 
   &:hover {
-    color: lighten(#059669, 30%);
+    color: lighten(#059669, 10%);
   }
 }
 

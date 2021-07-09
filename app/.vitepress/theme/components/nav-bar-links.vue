@@ -97,15 +97,13 @@
 </template>
 
 <script lang="ts" setup>
-import type { DefaultTheme } from 'vitepress';
 import NavBarLink from './nav-bar-link.vue';
 import { ref, computed, watch } from 'vue';
-import { useSiteData, usePageData } from 'vitepress';
+import { useData } from 'vitepress';
 
 const menuOpen = ref(false);
-const siteData = useSiteData<DefaultTheme.Config>();
-const page = usePageData();
-const navData = computed(() => siteData.value.themeConfig.nav);
+const { site, page } = useData();
+const navData = computed(() => site.value.themeConfig.nav);
 const menuClasses = computed(() =>
   menuOpen.value
     ? ['opacity-100', 'scale-100', 'duration-200', 'ease-out']

@@ -3,7 +3,7 @@ title: Contact Me
 description: 'Hey, this is Recovery. Please feel free to get in touch with me.'
 ---
 
-# {{ $page.title }}
+# Contact Me
 
 Get in touch, let's chat! :)
 

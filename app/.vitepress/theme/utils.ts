@@ -1,4 +1,4 @@
-import { useSiteData } from 'vitepress/dist/client/app/composables/siteData';
+import { useData } from 'vitepress';
 import { Post, computedPosts } from './store';
 
 export const hashRE = /#.*$/;
@@ -15,14 +15,15 @@ export function isArray(value: any): value is any[] {
 }
 
 export function withBase(path: string) {
-  return (useSiteData().value.base + path).replace(/\/+/g, '/');
+  const { site } = useData();
+  return (site.value.base + path).replace(/\/+/g, '/');
 }
 
 export function isExternal(path: string): boolean {
   return outboundRE.test(path);
 }
 
-export function isActive(route, path?: string): boolean {
+export function isActive(route: any, path?: string): boolean {
   if (path === undefined) {
     return false;
   }

@@ -17,12 +17,12 @@
 </template>
 
 <script lang="ts" setup>
-import { usePageData } from 'vitepress';
+import { useData } from 'vitepress';
 import { computed } from 'vue';
 
 type Header = { level: number; title: string; slug: string };
 
-const page = usePageData();
+const { page } = useData();
 const headers = computed<Array<Header>>(() => page.value.headers);
 </script>
 

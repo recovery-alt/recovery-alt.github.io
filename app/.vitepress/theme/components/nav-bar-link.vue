@@ -15,7 +15,7 @@
 
 <script lang="ts" setup>
 import { defineProps, computed } from 'vue';
-import { useRoute } from 'vitepress/dist/client/app/router';
+import { useRoute } from 'vitepress';
 import { withBase, isExternal } from '../utils';
 
 const normalizePath = (path: string) => {
