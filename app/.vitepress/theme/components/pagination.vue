@@ -11,7 +11,7 @@
         results
       </p>
     </div>
-    <div>
+    <div v-if="page.total > page.pageSize">
       <nav class="relative z-0 inline-flex rounded-md shadow-sm" aria-label="Pagination">
         <a
           href="#"

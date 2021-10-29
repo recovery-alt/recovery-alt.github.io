@@ -27,6 +27,14 @@ export type Post = {
 
 const posts: Array<Post> = [
   {
+    url: '/blog/js/闭包详解.html',
+    title: '闭包详解',
+    date: '2020-10-22',
+    excerpt: '自己理解的闭包',
+    readMins: 8,
+    tags: ['JavaScript'],
+  },
+  {
     url: '/blog/js/代码规范.html',
     title: '代码规范',
     date: '2020-12-04',
@@ -42,14 +50,14 @@ const posts: Array<Post> = [
     readMins: 8,
     tags: ['Chrome'],
   },
-  {
-    url: '/blog/js/前端性能优化.html',
-    title: '前端性能优化',
-    date: '2020-09-09',
-    excerpt: '个人理解的一些前端性能优化方法',
-    readMins: 8,
-    tags: ['JavaScript'],
-  },
+  // {
+  //   url: '/blog/js/前端性能优化.html',
+  //   title: '前端性能优化',
+  //   date: '2020-09-09',
+  //   excerpt: '个人理解的一些前端性能优化方法',
+  //   readMins: 8,
+  //   tags: ['JavaScript'],
+  // },
   {
     url: '/blog/js/手写系列.html',
     title: '手写系列',
@@ -82,38 +90,38 @@ const posts: Array<Post> = [
     readMins: 8,
     tags: ['LeetCode'],
   },
-  {
-    url: '/blog/vue/基于el-tree的虚拟滚动.html',
-    title: '基于el-tree的虚拟滚动',
-    date: '2021-03-15',
-    excerpt: '基于element-tree实现的虚拟滚动思路',
-    readMins: 8,
-    tags: ['Vue'],
-  },
-  {
-    url: '/blog/webpack/webpack优化.html',
-    title: 'webpack优化',
-    date: '2020-09-09',
-    excerpt: '个人总结的一些webpack常用优化方案',
-    readMins: 8,
-    tags: ['Webpack'],
-  },
-  {
-    url: '/blog/css/居中方案.html',
-    title: '居中方案',
-    date: '2020-07-02',
-    excerpt: 'css居中的各种方案',
-    readMins: 8,
-    tags: ['CSS'],
-  },
-  {
-    url: '/blog/interview/',
-    title: '面试',
-    date: '2020-09-16',
-    excerpt: '记录自己的面试之旅',
-    readMins: 8,
-    tags: ['JavaScript', 'TypeScript', 'Webpack', 'Vue', 'React'],
-  },
+  // {
+  //   url: '/blog/vue/基于el-tree的虚拟滚动.html',
+  //   title: '基于el-tree的虚拟滚动',
+  //   date: '2021-03-15',
+  //   excerpt: '基于element-tree实现的虚拟滚动思路',
+  //   readMins: 8,
+  //   tags: ['Vue'],
+  // },
+  // {
+  //   url: '/blog/webpack/webpack优化.html',
+  //   title: 'webpack优化',
+  //   date: '2020-09-09',
+  //   excerpt: '个人总结的一些webpack常用优化方案',
+  //   readMins: 8,
+  //   tags: ['Webpack'],
+  // },
+  // {
+  //   url: '/blog/css/居中方案.html',
+  //   title: '居中方案',
+  //   date: '2020-07-02',
+  //   excerpt: 'css居中的各种方案',
+  //   readMins: 8,
+  //   tags: ['CSS'],
+  // },
+  // {
+  //   url: '/blog/interview/',
+  //   title: '面试',
+  //   date: '2020-09-16',
+  //   excerpt: '记录自己的面试之旅',
+  //   readMins: 8,
+  //   tags: ['JavaScript', 'TypeScript', 'Webpack', 'Vue', 'React'],
+  // },
 ];
 
 const currentPage = 1;
