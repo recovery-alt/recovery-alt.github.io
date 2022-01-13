@@ -1,6 +1,8 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import 'vars.less';
+@import 'main.less';
+@import 'layout.less';
+@import 'code.less';
+@import 'custom-blocks.less';
 
 a:not(.unstyled):not(.header-anchor) {
   position: relative;
@@ -52,12 +54,10 @@ a:not(.unstyled):not(.header-anchor) {
 }
 
 .prose {
-  pre {
-    max-height: 85vh;
-  }
   a {
     color: #078261;
     font-weight: normal;
+    text-decoration: inherit;
   }
   iframe {
     width: 100%;

@@ -17,10 +17,6 @@ route.path.replace('/index.html', '/');
 .card-post {
   position: relative;
 
-  .prose {
-    max-width: 100% !important;
-  }
-
   &__link {
     position: absolute;
     left: 0;

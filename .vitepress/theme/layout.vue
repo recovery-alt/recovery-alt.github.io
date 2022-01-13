@@ -68,9 +68,3 @@ watch(
   { immediate: true }
 );
 </script>
-
-<style>
-.theme {
-  min-height: calc(100vh - 80px);
-}
-</style>

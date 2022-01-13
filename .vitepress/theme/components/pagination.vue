@@ -17,21 +17,7 @@
           href="#"
           @click="jumpPage(page.currentPage - 1)"
           :class="{ 'cursor-not-allowed': page.currentPage === 1 }"
-          class="
-            unstyled
-            relative
-            inline-flex
-            items-center
-            px-1
-            py-1
-            border
-            text-sm
-            font-medium
-            bg-white
-            border-gray-300
-            text-gray-500
-            hover:bg-gray-50
-          "
+          class="unstyled relative inline-flex items-center px-1 py-1 border text-sm font-medium bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
         >
           <svg
             class="h-5 w-5"
@@ -64,22 +50,7 @@
           href="#"
           @click="jumpPage(page.currentPage + 1)"
           :class="{ 'cursor-not-allowed': page.currentPage === page.totalPage }"
-          class="
-            unstyled
-            relative
-            inline-flex
-            items-center
-            px-1
-            py-1
-            border
-            text-sm
-            font-medium
-            ml-2
-            bg-white
-            border-gray-300
-            text-gray-500
-            hover:bg-gray-50
-          "
+          class="unstyled relative inline-flex items-center px-1 py-1 border text-sm font-medium ml-2 bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
         >
           <svg
             class="h-5 w-5"

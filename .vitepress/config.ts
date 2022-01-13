@@ -1,5 +1,11 @@
-module.exports = {
+import { defineConfig } from 'vitepress';
+import WindiCSS from 'vite-plugin-windicss';
+
+export default defineConfig({
   title: 'Recovery',
+  vite: {
+    plugins: [WindiCSS()],
+  },
   head: [
     ['link', { rel: 'icon', href: '/icon.svg' }],
     [
@@ -23,4 +29,4 @@ module.exports = {
       indexName: 'blog',
     },
   },
-};
+});
