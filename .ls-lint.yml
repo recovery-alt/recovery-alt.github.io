@@ -1,0 +1,11 @@
+ls:
+  .vitepress:
+    .js: kebab-case
+    .ts: kebab-case
+    .vue: kebab-case
+    .d.ts: kebab-case
+    .less: kebab-case
+
+ignore:
+  - src/locale/lang
+  - .vitepress/dist

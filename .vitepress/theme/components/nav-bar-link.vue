@@ -36,28 +36,27 @@ const props = defineProps({
   },
 });
 
-const item = props.item;
 const route = useRoute();
 const classes = computed(() => ({
   active: isActiveLink.value,
   external: isExternalLink.value,
 }));
 const isActiveLink = computed(() => {
-  return normalizePath(withBase(item.link)) === normalizePath(route.path);
+  return normalizePath(withBase(props.item.link)) === normalizePath(route.path);
 });
 const isExternalLink = computed(() => {
-  return isExternal(item.link);
+  return isExternal(props.item.link);
 });
 const href = computed(() => {
-  return isExternalLink.value ? item.link : withBase(item.link);
+  return isExternalLink.value ? props.item.link : withBase(props.item.link);
 });
 const target = computed(() => {
-  if (item.target) return item.target;
+  if (props.item.target) return props.item.target;
 
   return isExternalLink.value ? '_blank' : '';
 });
 const rel = computed(() => {
-  if (item.rel) return item.rel;
+  if (props.item.rel) return props.item.rel;
 
   return isExternalLink.value ? 'noopener noreferrer' : '';
 });

@@ -13,9 +13,9 @@ const theme: Theme = {
   Layout,
   NotFound,
   enhanceApp({ app }) {
-    app.component('posts', Posts);
-    app.component('pagination', Pagination);
-    app.component('icons', Icons);
+    app.component('Posts', Posts);
+    app.component('Pagination', Pagination);
+    app.component('Icons', Icons);
 
     // if we're in a server context then we exit out here
     if (typeof document === 'undefined' || typeof window === 'undefined') return;

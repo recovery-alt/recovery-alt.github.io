@@ -6,8 +6,8 @@
     <div class="-mr-2 -my-2 md:hidden">
       <button
         type="button"
-        @click="menuOpen = true"
         class="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
+        @click="menuOpen = true"
       >
         <span class="sr-only">Open menu</span>
         <svg
@@ -38,8 +38,8 @@
       <div class="pt-5 pb-6 px-5">
         <button
           type="button"
-          @click="menuOpen = false"
           class="absolute z-20 top-4 right-4 bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500"
+          @click="menuOpen = false"
         >
           <span class="sr-only">Close menu</span>
           <svg

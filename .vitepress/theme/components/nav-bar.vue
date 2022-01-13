@@ -22,9 +22,9 @@
     <NavBarLinks />
     <AlgoliaSearchBox
       v-if="theme.algolia"
+      :key="site.lang"
       :options="theme.algolia"
       :multilang="!!theme.locales"
-      :key="site.lang"
     />
   </div>
 </template>

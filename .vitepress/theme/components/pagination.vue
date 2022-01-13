@@ -15,9 +15,9 @@
       <nav class="relative z-0 inline-flex rounded-md shadow-sm" aria-label="Pagination">
         <a
           href="#"
-          @click="jumpPage(page.currentPage - 1)"
           :class="{ 'cursor-not-allowed': page.currentPage === 1 }"
           class="unstyled relative inline-flex items-center px-1 py-1 border text-sm font-medium bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+          @click="jumpPage(page.currentPage - 1)"
         >
           <svg
             class="h-5 w-5"
@@ -34,9 +34,9 @@
           </svg>
         </a>
         <a
-          href="#"
           v-for="item in page.totalPage"
           :key="item"
+          href="#"
           :class="`unstyled relative inline-flex items-center px-3 py-1 border text-sm font-medium ml-2 ${
             page.currentPage === item
               ? `bg-indigo-50 border-green-500 z-10`
@@ -48,9 +48,9 @@
         </a>
         <a
           href="#"
-          @click="jumpPage(page.currentPage + 1)"
           :class="{ 'cursor-not-allowed': page.currentPage === page.totalPage }"
           class="unstyled relative inline-flex items-center px-1 py-1 border text-sm font-medium ml-2 bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
+          @click="jumpPage(page.currentPage + 1)"
         >
           <svg
             class="h-5 w-5"

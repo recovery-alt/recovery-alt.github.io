@@ -4,17 +4,50 @@
 @import 'code.less';
 @import 'custom-blocks.less';
 
+.prose {
+  a {
+    color: #078261;
+    font-weight: normal;
+    text-decoration: inherit;
+  }
+
+  iframe {
+    width: 100%;
+    height: auto;
+    min-height: 400px;
+  }
+
+  p > code,
+  li > code {
+    padding: 0.25rem 0.5rem;
+    font-size: 1.125rem;
+    border-radius: 0.125rem;
+    background-image: linear-gradient(rgb(174 239 221), rgb(240 245 242));
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    font-weight: normal;
+
+    &::before {
+      display: none;
+    }
+
+    &::after {
+      display: none;
+    }
+  }
+}
+
 a:not(.unstyled):not(.header-anchor) {
   position: relative;
   overflow: hidden;
 
-  &:before {
-    position: absolute;
+  &::before {
+    width: 12px;
     height: 3px;
+    position: absolute;
     content: ' ';
     display: block;
     background-color: var(--c-logo);
-    width: 12px;
     opacity: 0;
     right: 0;
     top: 1.4em;
@@ -24,13 +57,13 @@ a:not(.unstyled):not(.header-anchor) {
     overflow: hidden;
   }
 
-  &:after {
-    position: absolute;
+  &::after {
+    width: 12px;
     height: 3px;
+    position: absolute;
     content: ' ';
     display: block;
     background-color: var(--c-logo);
-    width: 12px;
     opacity: 0;
     left: 0;
     top: 1.4em;
@@ -42,42 +75,14 @@ a:not(.unstyled):not(.header-anchor) {
 
   &:hover,
   &.active {
-    &:after {
+    &::after {
       opacity: 1;
       width: 50%;
     }
-    &:before {
-      opacity: 1;
-      width: 50%;
-    }
-  }
-}
 
-.prose {
-  a {
-    color: #078261;
-    font-weight: normal;
-    text-decoration: inherit;
-  }
-  iframe {
-    width: 100%;
-    height: auto;
-    min-height: 400px;
-  }
-  p > code,
-  li > code {
-    padding: 0.25rem 0.5rem;
-    font-size: 1.125rem;
-    border-radius: 0.125rem;
-    background-image: linear-gradient(rgb(174, 239, 221), rgb(240 245 242));
-    overflow-wrap: anywhere;
-    word-break: break-word;
-    font-weight: normal;
-    &:before {
-      display: none;
-    }
-    &:after {
-      display: none;
+    &::before {
+      opacity: 1;
+      width: 50%;
     }
   }
 }

@@ -1,0 +1,19 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-prettier/recommended",
+    "stylelint-config-html/vue"
+  ],
+  "plugins": ["stylelint-order"],
+  "rules": {
+    "order/order": ["custom-properties", "declarations"],
+    "order/properties-order": ["width", "height"]
+  },
+  "overrides": [
+    {
+      "files": [".vitepress/theme/**/*.less"],
+      "customSyntax": "postcss-less"
+    }
+  ],
+  "ignoreFiles": ["dist", "node_modules"]
+}
