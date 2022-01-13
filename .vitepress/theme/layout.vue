@@ -42,8 +42,7 @@ import Menu from './components/menu.vue';
 const zoom = inject<any>('zoom');
 const route = useRoute();
 const post = computed(() => postForPath(route.path));
-const { page, frontmatter } = useData();
-console.log(frontmatter.value);
+const { page } = useData();
 
 const showDebug = computed(() => import.meta.env.DEV);
 const isIndexPage = computed(() =>

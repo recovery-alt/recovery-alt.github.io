@@ -23,7 +23,7 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages # The branch the action should deploy to.
-          FOLDER: ./app/.vitepress/dist # The folder the action should deploy.
+          FOLDER: ./.vitepress/dist # The folder the action should deploy.
       - name: Checkout 🛎️
         uses: actions/checkout@v1
       - name: Mirror to gitee 🚀
