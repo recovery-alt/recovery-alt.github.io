@@ -29,7 +29,7 @@
 
 <script lang="ts" setup>
 import debounce from 'lodash/debounce';
-import { defineProps, ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 
 const props = defineProps({
   threshold: {

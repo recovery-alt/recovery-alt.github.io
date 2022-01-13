@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, computed } from 'vue';
+import { computed } from 'vue';
 import { useRoute } from 'vitepress';
 import { withBase, isExternal } from '../utils';
 
@@ -29,12 +29,7 @@ const normalizePath = (path: string) => {
   return path;
 };
 
-const props = defineProps({
-  item: {
-    type: Object,
-    required: true,
-  },
-});
+const props = defineProps<{ item: Record<string, string> }>();
 
 const route = useRoute();
 const classes = computed(() => ({

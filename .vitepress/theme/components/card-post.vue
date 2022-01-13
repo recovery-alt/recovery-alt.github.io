@@ -46,17 +46,10 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue';
-import { defineProps } from 'vue';
 import type { Post } from '../store';
 import PostTags from './post-tags.vue';
 
-defineProps({
-  post: {
-    type: Object as PropType<Post>,
-    required: true,
-  },
-});
+defineProps<{ post: Post }>();
 </script>
 
 <style lang="less" scoped>

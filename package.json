@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "export NODE_ENV=production; vitepress dev --host",
-    "build": "export NODE_ENV=production; vitepress build",
+    "dev": "vitepress dev --host",
+    "build": "vitepress build",
     "stylelint": "stylelint --fix .vitepress/**/*.{less,vue}",
     "lint": "eslint --fix --ext .ts,tsx,.vue .vitepress",
     "prepare": "husky install",

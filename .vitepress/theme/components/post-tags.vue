@@ -13,9 +13,9 @@
 </template>
 
 <script lang="ts" setup>
-import type { PropType } from 'vue';
 import type { Post } from '../store';
-import { defineProps } from 'vue';
+
+defineProps<{ post: Post }>();
 
 const modules = import.meta.globEager('../../../assets/icon/*.svg');
 
@@ -24,11 +24,4 @@ const getIcon = (name: string) => {
     if (key.includes(name)) return value.default;
   }
 };
-
-defineProps({
-  post: {
-    type: Object as PropType<Post>,
-    required: true,
-  },
-});
 </script>
