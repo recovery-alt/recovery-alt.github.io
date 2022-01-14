@@ -17,7 +17,7 @@ import type { Post } from '../store';
 
 defineProps<{ post: Post }>();
 
-const modules = import.meta.globEager('../../../assets/icon/*.svg');
+const modules = import.meta.globEager('../assets/icon/*.svg');
 
 const getIcon = (name: string) => {
   for (const [key, value] of Object.entries(modules)) {

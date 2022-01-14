@@ -5,7 +5,7 @@ description: 'description'
 
 <h1>
   <img
-    src="./assets/me.jpg"
+    src="./.vitepress/theme/assets/me.jpg"
     width="80"
     height="80"
     loading="lazy"
