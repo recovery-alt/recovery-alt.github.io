@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vitepress dev --host",
     "build": "vitepress build",
-    "stylelint": "stylelint --fix .vitepress/**/*.{less,vue}",
+    "stylelint": "stylelint --fix .vitepress/theme/**/*.{less,vue}",
     "lint": "eslint --fix --ext .ts,tsx,.vue .vitepress",
     "prepare": "husky install",
     "preinstall": "npx only-allow pnpm"

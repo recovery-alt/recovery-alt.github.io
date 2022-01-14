@@ -1,5 +1,5 @@
 <template>
-  <nav class="nav-links">
+  <nav class="flex items-center list-none transform translate-y-0.25">
     <div v-if="navData" class="hidden md:block">
       <NavBarLink v-for="item of navData" :key="item" :item="item" class="inline-block ml-8" />
     </div>
@@ -82,12 +82,3 @@ const menuClasses = computed(() =>
 
 watch(page, () => (menuOpen.value = false));
 </script>
-
-<style>
-.nav-links {
-  display: flex;
-  align-items: center;
-  list-style-type: none;
-  transform: translateY(1px);
-}
-</style>

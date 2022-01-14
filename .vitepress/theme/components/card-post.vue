@@ -1,12 +1,14 @@
 <template>
-  <div class="card-post md:-mx-8 my-8 hover:shadow-lg transition-all">
-    <div class="card-post__effect"></div>
+  <div class="group relative mt-8 hover:shadow-lg transition-all">
+    <div
+      class="w-[calc(100%-1px)] h-7.5 -z-1 absolute duration-0.2s opacity-0 top-7.5 bg-$c-logo group-hover:-top-1.25 group-hover:opacity-100 group-hover:transform group-hover:rotate-0.25"
+    ></div>
     <a
-      class="card-post__link unstyled"
+      class="absolute left-0 top-0 w-full h-full z-1 content unstyled"
       :href="post.url"
       :target="post.link ? '_blank' : 'initial'"
     ></a>
-    <div class="card-post__content">
+    <div class="bg-white z-1">
       <div class="md:p-8 p-4 prose md:prose-xl">
         <h3 class="pt-0">
           <a
@@ -51,44 +53,3 @@ import PostTags from './post-tags.vue';
 
 defineProps<{ post: Post }>();
 </script>
-
-<style lang="less" scoped>
-.card-post {
-  position: relative;
-
-  &__link {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    content: ' ';
-    z-index: 1;
-  }
-
-  &__content {
-    background-color: white;
-    z-index: 1;
-  }
-
-  &__effect {
-    z-index: -1;
-    content: ' ';
-    height: 30px;
-    width: 100%;
-    position: absolute;
-    background-color: var(--c-logo);
-    transition: 0.2s;
-    opacity: 0;
-    top: 30px;
-  }
-
-  &:hover {
-    .card-post__effect {
-      top: -5px;
-      opacity: 1;
-      transform: rotate(0.25deg);
-    }
-  }
-}
-</style>

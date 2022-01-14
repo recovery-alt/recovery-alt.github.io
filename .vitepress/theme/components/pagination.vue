@@ -1,5 +1,8 @@
 <template>
-  <div class="sm:flex-1 sm:flex sm:items-center sm:justify-between">
+  <div
+    v-if="page.total > page.pageSize"
+    class="sm:flex-1 sm:flex sm:items-center sm:justify-between"
+  >
     <div>
       <p class="text-sm text-gray-700">
         Showing
@@ -11,7 +14,7 @@
         results
       </p>
     </div>
-    <div v-if="page.total > page.pageSize">
+    <div>
       <nav class="relative z-0 inline-flex rounded-md shadow-sm" aria-label="Pagination">
         <a
           href="#"

@@ -48,6 +48,7 @@ const theme = computed(() => site.value.themeConfig);
   transform: rotate(45deg);
   opacity: 0.2;
 }
+
 .logo {
   position: relative;
   font-size: 1.8em !important;

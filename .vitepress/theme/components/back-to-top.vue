@@ -2,7 +2,7 @@
   <transition name="fade">
     <svg
       v-if="show"
-      class="go-to-top"
+      class="cursor-pointer fixed bottom-8 right-10 w-8 z-1 text-green-700 hover:text-green-500 sm:hidden"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 49.484 28.284"
       @click="scrollToTop"
@@ -58,30 +58,12 @@ onMounted(() => {
 });
 </script>
 
-<style lang="less" scoped>
-.go-to-top {
-  cursor: pointer;
-  position: fixed;
-  bottom: 2rem;
-  right: 2.5rem;
-  width: 2rem;
-  color: var(--c-logo);
-  z-index: 1;
-
-  &:hover {
-    color: lighten(#059669, 10%);
-  }
-}
-
-@media (max-width: 959px) {
-  .go-to-top {
-    display: none;
-  }
-}
+<style>
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 0.3s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;

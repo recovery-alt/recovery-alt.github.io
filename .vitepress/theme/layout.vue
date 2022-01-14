@@ -1,32 +1,30 @@
 <template>
-  <div class="theme">
-    <div class="bg-gray-50 px-5 sm:px-7 md:px-10">
-      <div class="prose md:prose-xl prose-green mx-auto">
-        <header class="navbar mb-10 sm:mb-16 md:mb-20">
-          <NavBar />
-        </header>
-        <main class="pb-10 sm:pb-16 md:pb-20">
-          <template v-if="post">
-            <h1>{{ post.title }}</h1>
-            <div class="text-sm text-gray-500">
-              <time class="mr-3">{{ post.date }}</time> 🕒 {{ post.readMins }}min
-            </div>
-            <PostTags :post="post" class="mt-5" />
-          </template>
-          <Content class="content animate-fadeIn" />
-        </main>
-      </div>
+  <div class="bg-gray-50 px-5 sm:px-7 md:px-10">
+    <div class="prose md:prose-xl prose-green mx-auto">
+      <header class="navbar mb-10 sm:mb-16 md:mb-20">
+        <NavBar />
+      </header>
+      <main class="pb-10 sm:pb-16 md:pb-20">
+        <template v-if="post">
+          <h1>{{ post.title }}</h1>
+          <div class="text-sm text-gray-500">
+            <time class="mr-3">{{ post.date }}</time> 🕒 {{ post.readMins }}min
+          </div>
+          <PostTags :post="post" class="mt-5" />
+        </template>
+        <Content class="content animate-fadeIn" />
+      </main>
     </div>
-    <footer class="px-5 sm:px-7 md:px-10 text-center text-gray-400 text-sm my-5">
-      <div class="text-center mb-5">
-        <icons />
-      </div>
-      <p class="mb-3">© 2021 Recovery, All rights reserved.</p>
-    </footer>
-    <BackToTop />
-    <Debug v-if="showDebug" />
-    <Menu v-if="!isIndexPage" />
   </div>
+  <footer class="px-5 sm:px-7 md:px-10 text-center text-gray-400 text-sm my-5">
+    <div class="text-center mb-5">
+      <icons />
+    </div>
+    <p class="mb-3">© 2021 Recovery, All rights reserved.</p>
+  </footer>
+  <BackToTop />
+  <Debug v-if="showDebug" />
+  <Menu v-if="!isIndexPage" />
 </template>
 
 <script lang="ts" setup>
