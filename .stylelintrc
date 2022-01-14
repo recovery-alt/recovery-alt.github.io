@@ -7,7 +7,13 @@
   "plugins": ["stylelint-order"],
   "rules": {
     "order/order": ["custom-properties", "declarations"],
-    "order/properties-order": ["width", "height"]
+    "order/properties-order": ["width", "height"],
+    "at-rule-no-unknown": [
+      true,
+      {
+        "ignoreAtRules": ["apply"]
+      }
+    ]
   },
   "overrides": [
     {
