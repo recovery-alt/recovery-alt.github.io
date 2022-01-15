@@ -2,7 +2,7 @@
   <transition name="fade">
     <svg
       v-if="show"
-      class="cursor-pointer fixed bottom-8 right-10 w-8 z-1 text-green-700 hover:text-green-500 sm:hidden"
+      class="cursor-pointer fixed bottom-8 right-10 w-8 z-1 text-green-700 hover:text-green-500"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 49.484 28.284"
       @click="scrollToTop"

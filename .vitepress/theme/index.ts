@@ -1,5 +1,5 @@
 import 'virtual:windi.css';
-import './styles/main.less';
+import './assets/styles/main.less';
 import Pagination from './components/pagination.vue';
 import Icons from './components/icons.vue';
 import Layout from './layout.vue';

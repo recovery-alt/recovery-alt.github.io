@@ -1,0 +1,56 @@
+@import 'vars.less';
+@import 'main.less';
+@import 'layout.less';
+@import 'code.less';
+@import 'custom-blocks.less';
+
+.prose {
+  a {
+    @apply text-green-600 font-normal no-underline;
+  }
+
+  p {
+    @apply text-justify;
+  }
+
+  img {
+    @apply my-0;
+  }
+
+  p > code,
+  li > code {
+    background-image: linear-gradient(#aeefdd, #f0f5f2);
+    @apply py-1 px-2 rounded-sm break-words font-normal;
+
+    &::before,
+    &::after {
+      @apply hidden;
+    }
+  }
+}
+
+a:not(.unstyled):not(.header-anchor) {
+  @apply relative overflow-hidden;
+
+  &::before,
+  &::after {
+    top: 1.4em;
+    @apply w-12px h-3px absolute block opacity-0 overflow-hidden bg-green-600 content-1;
+  }
+
+  &::before {
+    @apply left-0 duration-200 rounded-l;
+  }
+
+  &::after {
+    @apply right-0 duration-400 rounded-r;
+  }
+
+  &:hover,
+  &.active {
+    &::before,
+    &::after {
+      @apply opacity-100 w-1/2;
+    }
+  }
+}

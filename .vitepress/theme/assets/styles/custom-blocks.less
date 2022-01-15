@@ -4,16 +4,23 @@
 }
 
 .custom-block.tip,
+.custom-block.info,
 .custom-block.warning,
 .custom-block.danger {
   margin: 1rem 0;
   border-left: 0.5rem solid;
   padding: 0.1rem 1.5rem;
+  overflow-x: auto;
 }
 
 .custom-block.tip {
-  background-color: #f3f5f7;
-  border-color: #42b983;
+  background-color: #eee;
+  border-color: var(--c-brand);
+}
+
+.custom-block.info {
+  background-color: #eee;
+  border-color: var(--c-text-light-2);
 }
 
 .custom-block.warning {

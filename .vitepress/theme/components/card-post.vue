@@ -1,7 +1,7 @@
 <template>
   <div class="group relative mt-8 hover:shadow-lg transition-all">
     <div
-      class="w-[calc(100%-1px)] h-7.5 -z-1 absolute duration-0.2s opacity-0 top-7.5 bg-$c-logo group-hover:-top-1.25 group-hover:opacity-100 group-hover:transform group-hover:rotate-0.25"
+      class="w-full h-7.5 -z-1 absolute duration-0.2s opacity-0 top-7.5 bg-green-600 group-hover:-top-1.25 group-hover:opacity-100 group-hover:transform group-hover:rotate-0.25"
     ></div>
     <a
       class="absolute left-0 top-0 w-full h-full z-1 content unstyled"

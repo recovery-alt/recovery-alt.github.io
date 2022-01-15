@@ -43,16 +43,16 @@ const post = computed(() => postForPath(route.path));
 const { page } = useData();
 
 const showDebug = computed(() => import.meta.env.DEV);
-const isIndexPage = computed(() =>
-  ['index.md', 'contact/index.md', 'about/index.md'].includes(page.value.relativePath)
-);
+const isIndexPage = computed(() => {
+  return ['index.md', 'contact/index.md', 'about/index.md'].includes(page.value.relativePath);
+});
 
 watch(
   page,
   () => {
     if (zoom && isIndexPage.value) {
       setTimeout(() => {
-        zoom.listen('.prose img:not(.--exclude)');
+        zoom.listen('.prose img:not(.zoom-exclude)');
       }, 500);
     }
     if (typeof document !== 'undefined') {

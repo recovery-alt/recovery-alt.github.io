@@ -1,21 +1,21 @@
 <template>
-  <nav
-    class="fixed top-1/2 transform -translate-y-1/2 right-10 max-h-120 max-w-60 overflow-y-auto sm:hidden"
+  <div
+    class="bg-white fixed top-1/2 transform -translate-y-1/2 right-10 max-h-120 max-w-60 flex flex-col <lg:hidden"
   >
-    <ul>
+    <h1 class="p-2 text-xl border-b py-2 mb-2">目录</h1>
+    <ul class="px-2 flex-1 overflow-y-auto">
       <li
         v-for="item in headers"
         :key="item.slug"
         :title="item.title"
-        class="text-lg list-none overflow-hidden overflow-ellipsis whitespace-nowrap"
+        class="text-lg overflow-ellipsis whitespace-nowrap overflow-hidden leading-loose"
         :style="{ paddingLeft: item.level - 2 + 'rem' }"
+        tabindex="-1"
       >
-        <a :href="`#${item.slug}`">
-          {{ item.title }}
-        </a>
+        <a :href="`#${item.slug}`">{{ item.title }}</a>
       </li>
     </ul>
-  </nav>
+  </div>
 </template>
 
 <script lang="ts" setup>

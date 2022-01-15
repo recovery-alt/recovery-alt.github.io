@@ -1,0 +1,38 @@
+.header-anchor {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  opacity: 0;
+  transition: all 0.2s ease 0s;
+
+  &,
+  &:hover,
+  &:focus {
+    text-decoration: none;
+  }
+
+  h1:hover &,
+  h1:focus &,
+  h2:hover &,
+  h2:focus &,
+  h3:hover &,
+  h3:focus &,
+  h4:hover &,
+  h4:focus &,
+  h5:hover &,
+  h5:focus &,
+  h6:hover &,
+  h6:focus & {
+    opacity: 1;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  @apply font-header relative;
+}
