@@ -1,9 +1,9 @@
 ---
 title: 面经
 date: 2020-09-16
-sidebar: 'auto'
-categories:
-  - interview
+description: 记录自己的面试之旅
+disabled: true
+readMins: 8
 tags:
   - interview
 ---

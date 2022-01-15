@@ -1,9 +1,8 @@
 ---
 title: js模块化
 date: 2020-09-04
-sidebar: 'auto'
-categories:
-  - JavaScript
+description: 深入浅出介绍js的模块化机制，包含手写CommonJS规范
+readMins: 8
 tags:
   - JavaScript
 ---

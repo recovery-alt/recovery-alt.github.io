@@ -1,9 +1,8 @@
 ---
 title: 手写Promise
 date: 2020-07-16
-sidebar: 'auto'
-categories:
-  - JavaScript
+description: 从零开始实现一个Promise
+readMins: 8
 tags:
   - JavaScript
 ---

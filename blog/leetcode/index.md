@@ -1,9 +1,8 @@
 ---
 title: 记录力扣日常
 date: 2021-04-09
-sidebar: 'auto'
-categories:
-  - LeetCode
+description: 记录自己的力扣之旅
+readMins: 8
 tags:
   - LeetCode
 ---

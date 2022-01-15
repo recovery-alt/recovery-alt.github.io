@@ -1,9 +1,9 @@
 ---
 title: webpack优化
 date: 2020-09-09
-sidebar: 'auto'
-categories:
-  - Webpack
+description: 记录webpack相关知识
+disabled: true
+readMins: 8
 tags:
   - Webpack
 ---

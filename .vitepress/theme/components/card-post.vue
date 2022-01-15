@@ -39,7 +39,7 @@
           ><span v-if="post.readMins">- {{ post.readMins }}min</span>
         </div>
 
-        <p class="text-sm text-gray-600">{{ post.excerpt }}</p>
+        <p class="text-sm text-gray-600">{{ post.description }}</p>
 
         <PostTags :post="post" />
       </div>

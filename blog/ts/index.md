@@ -1,9 +1,9 @@
 ---
-title: 记录ts知识点
+title: ts知识点
 date: 2021-10-11
-sidebar: 'auto'
-categories:
-  - TypeScript
+description: 记录ts知识点
+disabled: true
+readMins: 8
 tags:
   - TypeScript
 ---

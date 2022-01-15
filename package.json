@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@panelbear/panelbear-js": "^1.3.3",
+    "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "vue": "^3.2.26",
     "zooming": "^2.1.1"
