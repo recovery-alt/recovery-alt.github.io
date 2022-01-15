@@ -27,9 +27,26 @@ export type Post = {
   link?: boolean;
 };
 
-async function resovleModule() {
-  const posts: Array<Post> = [];
+const posts = reactive<Array<Post>>([]);
 
+const currentPage = 1;
+const total = posts.length;
+const pageSize = 8;
+const totalPage = Math.ceil(total / pageSize);
+
+const page = reactive({ currentPage, total, pageSize, totalPage });
+
+const computedPosts = computed(() => {
+  const start = (page.currentPage - 1) * page.pageSize;
+  if (page.currentPage === page.totalPage) {
+    return posts.slice(start);
+  } else {
+    const end = page.currentPage * page.pageSize;
+    return posts.slice(start, end);
+  }
+});
+
+(async function () {
   for (const module of Object.values(modules)) {
     const { __pageData } = await module();
     const pageData = JSON.parse(__pageData);
@@ -40,27 +57,6 @@ async function resovleModule() {
     const date = dayjs(rawDate).format('YYYY-MM-DD');
     posts.push({ url, title, date, description, readMins, tags });
   }
-
-  const currentPage = 1;
-  const total = posts.length;
-  const pageSize = 8;
-  const totalPage = Math.ceil(total / pageSize);
-
-  const page = reactive({ currentPage, total, pageSize, totalPage });
-
-  const computedPosts = computed(() => {
-    const start = (page.currentPage - 1) * page.pageSize;
-    if (page.currentPage === page.totalPage) {
-      return posts.slice(start);
-    } else {
-      const end = page.currentPage * page.pageSize;
-      return posts.slice(start, end);
-    }
-  });
-
-  return { page, computedPosts };
-}
-
-const { page, computedPosts } = await resovleModule();
+})();
 
 export { page, computedPosts };
