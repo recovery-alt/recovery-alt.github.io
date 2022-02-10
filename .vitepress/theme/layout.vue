@@ -43,9 +43,9 @@ const post = computed(() => postForPath(route.path));
 const { page } = useData();
 
 const showDebug = computed(() => import.meta.env.DEV);
-const isIndexPage = computed(() => {
-  return ['index.md', 'contact/index.md', 'about/index.md'].includes(page.value.relativePath);
-});
+const isIndexPage = computed(() =>
+  ['index.md', 'contact/index.md', 'about/index.md'].includes(page.value.relativePath)
+);
 
 watch(
   page,

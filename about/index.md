@@ -19,6 +19,5 @@ I'm a postgraduate graduated from Ocean University of China in 2018. My major is
 
 Here's my open source projects. If you like it or it's helpful to you, please give me a star. Thanks 😊
 
-- <a href="https://github.com/cq360767996/view" target="_blank">view</a> low code platform based on TypeScript4 Vue3 and Vite2.
-- <a href="https://github.com/cq360767996/fake-netease-music.git" target="_blank">fake-netease-music</a> fake-netease-music based on TypeScript4 React17 Vite2 and
-  Electron16.
+- [view](https://github.com/cq360767996/view) low code platform based on TypeScript4 Vue3 and Vite2. [Experience now](http://47.100.62.108:3000/)
+- [fake-netease-music](https://github.com/cq360767996/fake-netease-music.git) based on TypeScript4 React17 Vite2 and Electron16.
