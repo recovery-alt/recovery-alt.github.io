@@ -82,7 +82,6 @@ tags:
 
 - csrf/xss 异同
 - 浏览器缓存机制
--
 
 ## 滴滴
 
@@ -92,3 +91,16 @@ tags:
 - 手写动态拼接 script
 - 对象解析为 key=value 的格式
 - 手写 Promise.all
+
+## e 签宝
+
+### 一面
+
+- watch 原理
+- qiankun 原理
+- webpack 流程
+- 循环依赖
+- 根据注释生成文档实现思路
+- babel 流程
+- 如何帮助组员成长
+- 架构一个 npm 包需要考虑哪些
