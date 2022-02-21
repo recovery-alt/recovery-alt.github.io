@@ -118,6 +118,12 @@ tags:
 - 在项目有突发情况（未按时、重难点无法解决等）的时候如何去解决
 - 如何控制代码质量
 
+### 二面
+
+- vue 如何代理数组
+- qiankun 和 Single-spa 原理
+- 如何帮助同事成长
+
 ## 钉钉
 
 ### 一面
@@ -138,3 +144,204 @@ tags:
 - 二叉搜索树会否存在目标值
 - 字符串前缀是否相等
 - 反转链表
+
+## 得物
+
+### 笔试
+
+#### 第一题
+
+```js
+// 实现一个 arrange 函数，可以进行时间和工作调度
+// arrange('William').execute();
+// > William is notified
+
+// arrange('William').do('commit').execute();
+// > William is notified
+// > Start to commit
+
+// arrange('William').wait(5).do('commit').execute();
+// > William is notified
+// 等待 5 秒
+// > Start to commit
+
+// arrange('William').waitFirst(5).do('push').execute();
+// 等待 5 秒
+// > William is notified
+// > Start to push
+
+function arrange(name) {
+  this.promises = [];
+  this.promises.push(Promise.resolve(`${name} is notified`));
+
+  this.do = function (todo) {
+    this.promises.push(Promise.resolve(`Start to ${todo}`));
+
+    return this;
+  };
+
+  function genWaitPromise(second) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(`等待${second}秒`);
+      }, second * 1000);
+    });
+  }
+
+  this.wait = function (second) {
+    this.promises.push(genWaitPromise(second));
+
+    return this;
+  };
+
+  this.waitFirst = function (second) {
+    this.promises.unshift(genWaitPromise(second));
+
+    return this;
+  };
+
+  this.execute = async function () {
+    const len = this.promises.length;
+    let i = 0;
+
+    while (i < len) {
+      const res = await this.promises[i];
+      console.log(res);
+      i++;
+    }
+  };
+
+  return this;
+}
+```
+
+#### 第二题
+
+```js
+// 扁平数据转树形结构
+function buildTree(arr) {
+  const len = arr.length;
+  const res = [];
+  const map = {};
+  const notFoundMap = {};
+
+  for (let i = 0; i < len; i++) {
+    const { id, parentId, ...rest } = arr[i];
+
+    let parent;
+    const node = { id, parentId, ...rest, children: [] };
+
+    map[id] = node;
+
+    if (parentId && map[parentId]) {
+      parent = map[parentId];
+      res.push(parent);
+    } else {
+      if (notFoundMap[parentId]) {
+        parent = notFoundMap[parentId];
+      } else {
+        parent = { children: [] };
+        notFoundMap[parentId] = parent;
+      }
+    }
+
+    if (notFoundMap[id]) {
+      node.children = notFoundMap[id];
+      const index = res.indexOf(notFoundMap[id]);
+      res.splice(index, 1);
+      delete notFoundMap[id];
+    }
+
+    parent.children.push(node);
+  }
+
+  Object.entries(notFoundMap).forEach(([key, item]) => {
+    // 需要排除parentId不存在的情况
+    if (key !== 'undefined') res.push(...item.children);
+  });
+
+  return res;
+}
+```
+
+### 第三题
+
+```js
+// 实环一个异步任务处理区数，区数第一个参数 asyncTasks 代表需要处理的任务列表
+// 第一个参数 n 代表可么同的发起的任务数。所有任务完成后把处理结果按顺序放在数组里返回
+// 1s
+// > resolve task 1
+// 1s
+// > resolve task 2 // 1s
+// > resolve task 3
+const asyncTask1 = () =>
+  new Promise(resolve =>
+    setTimeout(() => {
+      console.log('resolve task 1');
+      resolve();
+    }, 1000)
+  );
+const asyncTask2 = () =>
+  new Promise(resolve =>
+    setTimeout(() => {
+      console.log('resolve task 2');
+      resolve();
+    }, 2000)
+  );
+const asyncTask3 = () =>
+  new Promise(resolve =>
+    setTimeout(() => {
+      console.log('resolve task 3');
+      resolve();
+    }, 2000)
+  );
+const asyncTasks = [asyncTask1, asyncTask2, asyncTask3];
+handleAsyncTasks(asyncTasks, 2);
+
+async function handleAsyncTasks(asyncTasks, n) {
+  const len = asyncTasks.length;
+  let i = 0;
+  let j = 0;
+
+  while (j < len) {
+    while (i < n) {
+      await asyncTasks[j]();
+      j++;
+      if (j === len) break;
+    }
+  }
+}
+```
+
+#### 第四题
+
+```js
+// 力扣 40 题 组合总数 II
+function getAllArrays(array, value) {
+  array.sort((a, b) => a - b);
+  const len = array.length;
+  const result = [];
+
+  // 深度优先遍历 + 循环
+  function dfs(pos, value, path) {
+    if (value === 0) {
+      result.push(path);
+      return;
+    }
+
+    for (let i = pos; i < len; i++) {
+      const item = array[i];
+
+      // 如果超过了value直接break
+      if (value < item) break;
+      // 如果不是第一个，并且和前一个相同则表示
+      if (i > pos && item === array[i - 1]) continue;
+      dfs(i + 1, value - item, [...path, item]);
+    }
+  }
+
+  dfs(0, value, []);
+
+  return result;
+}
+```
