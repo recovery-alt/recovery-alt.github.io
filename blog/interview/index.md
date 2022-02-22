@@ -221,46 +221,37 @@ function arrange(name) {
 // 扁平数据转树形结构
 function buildTree(arr) {
   const len = arr.length;
-  const res = [];
+  const result = [];
   const map = {};
   const notFoundMap = {};
 
   for (let i = 0; i < len; i++) {
-    const { id, parentId, ...rest } = arr[i];
-
-    let parent;
-    const node = { id, parentId, ...rest, children: [] };
-
+    const { id, parentId } = arr[i];
+    const node = { ...arr[i], children: [] };
     map[id] = node;
-
-    if (parentId && map[parentId]) {
-      parent = map[parentId];
-      res.push(parent);
-    } else {
-      if (notFoundMap[parentId]) {
-        parent = notFoundMap[parentId];
-      } else {
-        parent = { children: [] };
-        notFoundMap[parentId] = parent;
-      }
-    }
 
     if (notFoundMap[id]) {
       node.children = notFoundMap[id];
-      const index = res.indexOf(notFoundMap[id]);
-      res.splice(index, 1);
       delete notFoundMap[id];
     }
 
-    parent.children.push(node);
+    if (!parentId) {
+      result.push(node);
+    } else if (map[parentId]) {
+      map[parentId].children.push(node);
+    } else if (!notFoundMap[parentId]) {
+      notFoundMap[parentId] = [node];
+    } else {
+      notFoundMap[parentId].push(node);
+    }
   }
 
-  Object.entries(notFoundMap).forEach(([key, item]) => {
-    // 需要排除parentId不存在的情况
-    if (key !== 'undefined') res.push(...item.children);
+  // 有未找到的就放入根
+  Object.values(notFoundMap).forEach(item => {
+    result.push(...item);
   });
 
-  return res;
+  return result;
 }
 ```
 
