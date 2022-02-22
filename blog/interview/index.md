@@ -298,18 +298,37 @@ const asyncTask3 = () =>
 const asyncTasks = [asyncTask1, asyncTask2, asyncTask3];
 handleAsyncTasks(asyncTasks, 2);
 
-async function handleAsyncTasks(asyncTasks, n) {
-  const len = asyncTasks.length;
+function handleAsyncTasks(array, poolLimit) {
   let i = 0;
-  let j = 0;
+  const result = [];
+  // 保存正在执行的promise
+  const executing = [];
 
-  while (j < len) {
-    while (i < n) {
-      await asyncTasks[j]();
-      j++;
-      if (j === len) break;
-    }
+  function enqueue() {
+    // 边界处理，array为空数组
+    if (i === array.length) return Promise.resolve();
+
+    // 每调用一次enqueue，执行并返回一个Promise
+    const fn = array[i++];
+    const p = Promise.resolve().then(fn);
+    // 将初始化的promise放入promises数组
+    result.push(p);
+
+    // promise执行完毕，从executing数组中删除
+    const e = p.then(() => executing.splice(executing.indexOf(e), 1));
+    executing.push(e);
+
+    let r = Promise.resolve();
+    // 使用Promise.race，获得executing中promise的执行情况
+    // 每当正在执行的promise数量高于poolLimit，就执行一次 否则继续实例化新的Promise达到poolLimit时执行
+    if (executing.length >= poolLimit) r = Promise.race(executing);
+
+    // 递归，直到遍历完array
+    return r.then(() => enqueue());
   }
+
+  //所有的 promise 都执行完了，调用Promise.all返回
+  return enqueue().then(() => Promise.all(result));
 }
 ```
 
