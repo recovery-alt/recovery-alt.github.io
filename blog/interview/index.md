@@ -355,3 +355,21 @@ function getAllArrays(array, value) {
   return result;
 }
 ```
+
+## 字节
+
+### 一面
+
+- flex
+- 模块化机制
+- hash 和 history 区别
+- 如何判断一个变量是否数组，考察原型链
+- 作用域链
+- csrf / xss
+- Promise 机制，常用函数
+- span 的 margin 怎么生效
+- 浏览器缓存
+- 请求头常见属性
+- http 状态码，404 代表什么
+- 手写 setTimeout 的相关题目，考察 js 运行机制
+- 手写算法题，数字转千分位展示
