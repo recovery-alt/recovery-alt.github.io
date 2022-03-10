@@ -389,3 +389,15 @@ function getAllArrays(array, value) {
 - this 指向的一道题
 - 手写内存泄漏场景
 - 实现包含数组和加减乘除的字符串的计算(不含括号)
+
+## 网易
+
+### 一面
+
+主要是根据工作经历提问
+
+- promise.then 的返回值是什么
+- 离职原因
+- 手写事件监听器
+- 为什么要 fork element-ui
+- 低代码平台的难点在哪
