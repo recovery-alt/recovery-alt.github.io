@@ -411,3 +411,13 @@ function getAllArrays(array, value) {
 - 手写事件监听器
 - 为什么要 fork element-ui
 - 低代码平台的难点在哪
+
+### 二面
+
+- 手写 promise
+- 手写 el-select 扩展虚拟滚动
+- promise 的 catch
+- 换肤实现细节
+- fork element-ui 如何解决开源的更新问题
+- react 17 更新了那些内容
+- 自定义 hooks 写过哪些，hooks 的原理
