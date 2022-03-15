@@ -20,7 +20,7 @@
     <div class="text-center mb-5">
       <icons />
     </div>
-    <p class="mb-3">© 2021 Recovery, All rights reserved.</p>
+    <p class="mb-3">© 2022 Recovery, All rights reserved.</p>
   </footer>
   <BackToTop />
   <Debug v-if="showDebug" />

@@ -59,6 +59,6 @@ const rel = computed(() => {
 
 <style lang="less" scoped>
 .nav-link {
-  color: rgb(55 65 81) !important;
+  color: #374151 !important;
 }
 </style>

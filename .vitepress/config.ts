@@ -6,6 +6,7 @@ export default defineConfig({
   vite: {
     plugins: [WindiCSS()],
   },
+  scrollOffset: 40,
   head: [
     ['link', { rel: 'icon', href: '/icon.svg' }],
     [

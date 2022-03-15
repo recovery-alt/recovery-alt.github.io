@@ -14,8 +14,7 @@
     "sourceMap": false,
     "baseUrl": ".",
     "paths": { "@/*": [".vitepress/theme/*"] },
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-    "types": ["vite/client"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
     ".vitepress/**/*.ts",
