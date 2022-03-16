@@ -421,3 +421,10 @@ function getAllArrays(array, value) {
 - fork element-ui 如何解决开源的更新问题
 - react 17 更新了那些内容
 - 自定义 hooks 写过哪些，hooks 的原理
+
+### 三面
+
+- 离职原因
+- vue 原理，问的比较浅，但是 api 都问了个遍
+- 路由懒加载
+- 做过的项目
