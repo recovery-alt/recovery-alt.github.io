@@ -24,21 +24,12 @@
     </div>
     <div class="flex-grow"></div>
     <NavBarLinks />
-    <AlgoliaSearchBox
-      v-if="theme.algolia"
-      :key="site.lang"
-      :options="theme.algolia"
-      :multilang="!!theme.locales"
-    />
   </div>
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
 import NavBarLinks from './nav-bar-links.vue';
-import AlgoliaSearchBox from 'vitepress/dist/client/theme-default/components/AlgoliaSearchBox.vue';
 import { useData } from 'vitepress';
 
 const { site } = useData();
-const theme = computed(() => site.value.themeConfig);
 </script>

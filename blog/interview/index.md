@@ -5,7 +5,7 @@ description: 记录自己的面试之旅
 disabled: true
 readMins: 8
 tags:
-  - interview
+  - JavaScript
 ---
 
 ## 字节
