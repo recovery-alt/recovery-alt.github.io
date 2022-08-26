@@ -47,6 +47,7 @@ const computedPosts = computed(() => {
 });
 
 (async function () {
+  if (posts.length) return;
   for (const module of Object.values(modules)) {
     const { __pageData } = await module();
     const pageData = JSON.parse(__pageData);
