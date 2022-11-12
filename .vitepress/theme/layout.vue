@@ -23,7 +23,6 @@
     <p class="mb-3">© 2022 Recovery, All rights reserved.</p>
   </footer>
   <BackToTop />
-  <Debug v-if="showDebug" />
   <Menu v-if="!isIndexPage" />
 </template>
 
@@ -32,7 +31,7 @@ import NavBar from './components/nav-bar.vue';
 import PostTags from './components/post-tags.vue';
 import { inject, computed, watch } from 'vue';
 import { postForPath } from './utils';
-import { useRoute, useData, Content, Debug } from 'vitepress';
+import { useRoute, useData, Content } from 'vitepress';
 import icons from './components/icons.vue';
 import BackToTop from './components/back-to-top.vue';
 import Menu from './components/menu.vue';
@@ -42,7 +41,6 @@ const route = useRoute();
 const post = computed(() => postForPath(route.path));
 const { page } = useData();
 
-const showDebug = computed(() => import.meta.env.DEV);
 const isIndexPage = computed(() =>
   ['index.md', 'contact/index.md', 'about/index.md'].includes(page.value.relativePath)
 );

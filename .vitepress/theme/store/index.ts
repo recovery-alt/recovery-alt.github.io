@@ -1,6 +1,7 @@
 import { computed, reactive } from 'vue';
 import dayjs from 'dayjs';
-const modules = import.meta.glob('../../../blog/**/*.md');
+import { PageData } from 'vitepress';
+const modules = import.meta.glob<{ __pageData: PageData }>('../../../blog/**/*.md');
 
 type Tag =
   | 'Vue'
@@ -50,8 +51,7 @@ const computedPosts = computed(() => {
   if (posts.length) return;
   for (const module of Object.values(modules)) {
     const { __pageData } = await module();
-    const pageData = JSON.parse(__pageData);
-    const { frontmatter, relativePath } = pageData;
+    const { frontmatter, relativePath } = __pageData;
     const { disabled, title, date: rawDate, description, readMins, tags } = frontmatter;
     if (disabled) continue;
     const url = relativePath.replace(/\.md$/, '.html');
