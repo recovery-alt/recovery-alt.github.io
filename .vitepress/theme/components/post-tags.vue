@@ -12,11 +12,11 @@ import type { Post } from '../store';
 
 defineProps<{ post: Post }>();
 
-const modules = import.meta.globEager('../assets/icon/*.svg');
+const modules = import.meta.glob('../assets/icon/*.svg', { eager: true });
 
 const getIcon = (name: string) => {
   for (const [key, value] of Object.entries(modules)) {
-    if (key.includes(name)) return value.default;
+    if (key.includes(name)) return (value as any).default;
   }
 };
 </script>

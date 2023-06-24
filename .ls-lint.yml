@@ -8,4 +8,4 @@ ls:
 
 ignore:
   - src/locale/lang
-  - .vitepress/dist
+  - .vitepress/cache

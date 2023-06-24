@@ -1,8 +1,8 @@
-@import 'vars.less';
-@import 'main.less';
-@import 'layout.less';
-@import 'code.less';
-@import 'custom-blocks.less';
+@import url('vars.less');
+@import url('main.less');
+@import url('layout.less');
+@import url('code.less');
+@import url('custom-blocks.less');
 
 .prose {
   a {
@@ -20,6 +20,7 @@
   p > code,
   li > code {
     background-image: linear-gradient(#aeefdd, #f0f5f2);
+
     @apply py-1 px-2 rounded-sm break-words font-normal;
 
     &::before,
@@ -29,12 +30,13 @@
   }
 }
 
-a:not(.unstyled):not(.header-anchor) {
+a:not(.unstyled, .header-anchor) {
   @apply relative overflow-hidden;
 
   &::before,
   &::after {
     top: 1.4em;
+
     @apply w-12px h-3px absolute block opacity-0 overflow-hidden bg-green-600 content-1;
   }
 
