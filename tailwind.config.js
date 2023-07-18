@@ -1,11 +1,9 @@
-import { defineConfig } from 'windicss/helpers';
-import typography from 'windicss/plugin/typography';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const typography = require('@tailwindcss/typography');
 
-export default defineConfig({
-  extract: {
-    include: ['.vitepress/theme/**/*.{vue,tsx}', '{about,assets,blog,contact}/**/*.md', 'index.md'],
-  },
-  plugins: [typography()],
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ['.vitepress/theme/**/*.{vue,tsx}', '{about,assets,blog,contact}/**/*.md', 'index.md'],
   theme: {
     extend: {
       animation: {
@@ -24,4 +22,5 @@ export default defineConfig({
       },
     },
   },
-});
+  plugins: [typography()],
+};

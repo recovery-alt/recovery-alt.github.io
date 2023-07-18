@@ -1,5 +1,5 @@
 <template>
-  <CardPost v-for="post in computedPosts" :key="post.url" :post="post" />
+  <CardPost v-for="post in computedPosts" :key="post.title" :post="post" />
 </template>
 
 <script lang="ts" setup>

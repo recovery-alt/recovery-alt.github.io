@@ -2,7 +2,7 @@
   <div class="w-full flex items-center justify-between border-b-2 border-gray-100 py-3 md:py-6">
     <div class="relative ml-2 md:ml-0">
       <svg
-        class="absolute -left-25px -top-14px z-0 transform rotate-45 opacity-20"
+        class="absolute -left-6 -top-3.5 z-0 transform rotate-45 opacity-20"
         viewBox="0 0 200 200"
         width="80"
         height="80"
@@ -15,7 +15,7 @@
         />
       </svg>
       <a
-        class="relative text-3xl text-green-600 z-1"
+        class="relative text-3xl text-green-700 z-10"
         :aria-label="site.title + ', back to home'"
         :href="site.base"
       >

@@ -16,18 +16,7 @@
 <script lang="ts" setup>
 import { computed } from 'vue';
 import { useRoute } from 'vitepress';
-import { withBase, isExternal } from '../utils';
-
-const normalizePath = (path: string) => {
-  path = path
-    .replace(/#.*$/, '')
-    .replace(/\?.*$/, '')
-    .replace(/\.html$/, '');
-  if (path.endsWith('/')) {
-    path += 'index';
-  }
-  return path;
-};
+import { withBase, isExternal, normalizePath } from '../utils';
 
 const props = defineProps<{ item: Record<string, string> }>();
 

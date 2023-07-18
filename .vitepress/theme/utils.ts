@@ -1,5 +1,4 @@
 import { useData } from 'vitepress';
-import { Post, computedPosts } from './store';
 
 export const hashRE = /#.*$/;
 export const extRE = /(index)?\.(md|html)$/;
@@ -81,15 +80,20 @@ export function ensureEndingSlash(path: string): string {
 }
 
 /**
- * Remove `.md` or `.html` extention from the given path. It also converts
+ * Remove `.md` or `.html` extension from the given path. It also converts
  * `index` to slush.
  */
-export function removeExtention(path: string): string {
+export function removeExtension(path: string): string {
   return path.replace(/(index)?(\.(md|html))?$/, '') || '/';
 }
 
-export function postForPath(path: string): Post {
-  path = removeExtention(path);
-  path = decodeURI(path);
-  return computedPosts.value.filter(p => p.url === path || p.url === path + '.html')[0];
-}
+export const normalizePath = (path: string) => {
+  path = path
+    .replace(/#.*$/, '')
+    .replace(/\?.*$/, '')
+    .replace(/\.html$/, '');
+  if (path.endsWith('/')) {
+    path += 'index';
+  }
+  return path;
+};

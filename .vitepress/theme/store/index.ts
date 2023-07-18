@@ -1,6 +1,6 @@
 import { computed, reactive } from 'vue';
 import dayjs from 'dayjs';
-import { PageData } from 'vitepress';
+import { PageData, inBrowser } from 'vitepress';
 const modules = import.meta.glob<{ __pageData: PageData }>('../../../blog/**/*.md');
 
 type Tag =
@@ -31,9 +31,9 @@ export type Post = {
 const posts = reactive<Array<Post>>([]);
 
 const currentPage = 1;
-const total = posts.length;
+const total = computed(() => posts.length);
 const pageSize = 8;
-const totalPage = Math.ceil(total / pageSize);
+const totalPage = computed(() => Math.ceil(total.value / pageSize));
 
 const page = reactive({ currentPage, total, pageSize, totalPage });
 
@@ -48,7 +48,7 @@ const computedPosts = computed(() => {
 });
 
 (async function () {
-  if (posts.length) return;
+  if (posts.length || (import.meta.env.PROD && inBrowser)) return;
   for (const module of Object.values(modules)) {
     const { __pageData } = await module();
     const { frontmatter, relativePath } = __pageData;

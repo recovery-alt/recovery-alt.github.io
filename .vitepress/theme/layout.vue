@@ -23,22 +23,27 @@
     <p class="mb-3">© 2022 Recovery, All rights reserved.</p>
   </footer>
   <BackToTop />
-  <Menu v-if="!isIndexPage" />
+  <!-- <Menu v-if="!isIndexPage" /> -->
 </template>
 
 <script lang="ts" setup>
 import NavBar from './components/nav-bar.vue';
 import PostTags from './components/post-tags.vue';
 import { inject, computed, watch } from 'vue';
-import { postForPath } from './utils';
 import { useRoute, useData, Content } from 'vitepress';
 import icons from './components/icons.vue';
 import BackToTop from './components/back-to-top.vue';
-import Menu from './components/menu.vue';
+import { removeExtension } from './utils';
+import { computedPosts } from './store';
+// import Menu from './components/menu.vue';
 
 const zoom = inject<any>('zoom');
 const route = useRoute();
-const post = computed(() => postForPath(route.path));
+const post = computed(() => {
+  let path = removeExtension(route.path);
+  path = decodeURI(path);
+  return computedPosts.value.filter(p => p.url === path || p.url === path + '.html')[0];
+});
 const { page } = useData();
 
 const isIndexPage = computed(() =>
