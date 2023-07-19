@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('vars.less');
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-sans;
+}
+
+.container a.title {
+  @apply relative font-bold text-2xl font-sans;
+
+  color: var(--vp-c-brand);
+}
+
+.vp-doc :not(pre) > code {
+  background-image: linear-gradient(#aeefdd, #f0f5f2);
+  color: #111827;
+}
+
+.VPNavBarMenu .VPNavBarMenuLink {
+  @apply relative overflow-hidden font-sans font-bold text-lg px-0 mx-3;
+
+  &::before,
+  &::after {
+    top: 1.4em;
+
+    @apply w-2 h-1 absolute block opacity-0 overflow-hidden content-[''];
+  }
+
+  &::before {
+    @apply left-0 duration-200 rounded-l;
+  }
+
+  &::after {
+    @apply right-0 duration-300 rounded-r;
+  }
+
+  &:hover,
+  &.active {
+    &::before,
+    &::after {
+      @apply opacity-100 w-1/2 bg-[--vp-c-brand];
+    }
+  }
+}
+
+.VPNavBarMenu .VPNavScreenMenuLink {
+  @apply font-sans font-bold text-lg;
+}
+
+.VPContent {
+  @apply animate-fadeIn;
+}

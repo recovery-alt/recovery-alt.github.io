@@ -1,59 +1,47 @@
 <template>
-  <div class="bg-gray-50 px-5 sm:px-7 md:px-10">
-    <div class="prose md:prose-xl prose-green mx-auto">
-      <header class="navbar mb-10 sm:mb-16 md:mb-20">
-        <NavBar />
-      </header>
-      <main class="pb-10 sm:pb-16 md:pb-20">
-        <template v-if="post">
-          <h1>{{ post.title }}</h1>
-          <div class="text-sm text-gray-500">
-            <time class="mr-3">{{ post.date }}</time> 🕒 {{ post.readMins }}min
-          </div>
-          <PostTags :post="post" class="mt-5" />
-        </template>
-        <Content class="content animate-fadeIn" />
-      </main>
-    </div>
-  </div>
-  <footer class="px-5 sm:px-7 md:px-10 text-center text-gray-400 text-sm my-5">
-    <div class="text-center mb-5">
-      <icons />
-    </div>
-    <p class="mb-3">© 2022 Recovery, All rights reserved.</p>
-  </footer>
+  <Layout>
+    <template #nav-bar-title-before>
+      <svg
+        class="absolute -left-6 -top-2 z-0 transform rotate-45 opacity-20"
+        viewBox="0 0 200 200"
+        width="80"
+        height="80"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill="#059669"
+          d="M50.4,-15.8C59.3,10.9,56.2,42.1,36,58.9C15.9,75.8,-21.4,78.3,-41.8,62.4C-62.2,46.4,-65.8,11.9,-56,-16C-46.2,-43.9,-23.1,-65.4,-1.2,-65C20.8,-64.6,41.5,-42.4,50.4,-15.8Z"
+          transform="translate(100 100)"
+        />
+      </svg>
+    </template>
+    <template #doc-bottom>
+      <footer class="px-5 sm:px-7 md:px-10 text-center text-gray-400 text-sm my-5">
+        <div class="text-center mb-5">
+          <icons />
+        </div>
+        <p class="mb-3">© 2023 Recovery, All rights reserved.</p>
+      </footer>
+    </template>
+  </Layout>
   <BackToTop />
-  <!-- <Menu v-if="!isIndexPage" /> -->
 </template>
 
 <script lang="ts" setup>
-import NavBar from './components/nav-bar.vue';
-import PostTags from './components/post-tags.vue';
-import { inject, computed, watch } from 'vue';
-import { useRoute, useData, Content } from 'vitepress';
+import { inject, watch } from 'vue';
+import { useData } from 'vitepress';
 import icons from './components/icons.vue';
 import BackToTop from './components/back-to-top.vue';
-import { removeExtension } from './utils';
-import { computedPosts } from './store';
-// import Menu from './components/menu.vue';
+import DefaultTheme from 'vitepress/theme';
+const { Layout } = DefaultTheme;
 
 const zoom = inject<any>('zoom');
-const route = useRoute();
-const post = computed(() => {
-  let path = removeExtension(route.path);
-  path = decodeURI(path);
-  return computedPosts.value.filter(p => p.url === path || p.url === path + '.html')[0];
-});
 const { page } = useData();
-
-const isIndexPage = computed(() =>
-  ['index.md', 'contact/index.md', 'about/index.md'].includes(page.value.relativePath)
-);
 
 watch(
   page,
   () => {
-    if (zoom && isIndexPage.value) {
+    if (zoom) {
       setTimeout(() => {
         zoom.listen('.prose img:not(.zoom-exclude)');
       }, 500);

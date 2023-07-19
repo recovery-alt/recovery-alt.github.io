@@ -1,91 +1,94 @@
 <template>
-  <div
-    v-if="page.total > page.pageSize"
-    class="sm:flex-1 sm:flex sm:items-center sm:justify-between"
-  >
+  <div v-if="total > pageSize" class="flex-1 flex items-center justify-between">
     <div>
-      <p class="text-sm text-gray-700">
+      <p class="text-sm text-[--vp-c-text-2]">
         Showing
-        <span class="font-medium">{{ start }}</span>
+        <span :class="leftText">{{ start }}</span>
         to
-        <span class="font-medium">{{ end }}</span>
+        <span :class="leftText">{{ end }}</span>
         of
-        <span class="font-medium">{{ page.total }}</span>
+        <span :class="leftText">{{ total }}</span>
         results
       </p>
     </div>
-    <div>
-      <nav class="relative z-0 inline-flex rounded-md shadow-sm" aria-label="Pagination">
-        <a
-          href="#"
-          :class="{ 'cursor-not-allowed': page.currentPage === 1 }"
-          class="unstyled relative inline-flex items-center px-1 py-1 border text-sm font-medium bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
-          @click="jumpPage(page.currentPage - 1)"
+    <nav class="flex items-center justify-center gap-2" aria-label="Pagination">
+      <div
+        class="item"
+        :class="{ 'not-allowed': currentPage === 1 }"
+        @click="jumpPage(currentPage - 1)"
+      >
+        <svg
+          class="h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
         >
-          <svg
-            class="h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </a>
-        <a
-          v-for="item in page.totalPage"
-          :key="item"
-          href="#"
-          :class="`unstyled relative inline-flex items-center px-3 py-1 border text-sm font-medium ml-2 ${
-            page.currentPage === item
-              ? `bg-indigo-50 border-green-500 z-10`
-              : `bg-white border-gray-300 hover:bg-gray-50`
-          }`"
-          @click="jumpPage(item)"
+          <path
+            fill-rule="evenodd"
+            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div
+        v-for="item in totalPage"
+        :key="item"
+        class="item"
+        :class="{ 'border border-[--vp-c-brand] text-[--vp-c-brand]': currentPage === item }"
+        @click="jumpPage(item)"
+      >
+        {{ item }}
+      </div>
+      <div
+        class="item"
+        :class="{ 'not-allowed': currentPage === totalPage }"
+        @click="jumpPage(currentPage + 1)"
+      >
+        <svg
+          class="h-5 w-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+          aria-hidden="true"
         >
-          {{ item }}
-        </a>
-        <a
-          href="#"
-          :class="{ 'cursor-not-allowed': page.currentPage === page.totalPage }"
-          class="unstyled relative inline-flex items-center px-1 py-1 border text-sm font-medium ml-2 bg-white border-gray-300 text-gray-500 hover:bg-gray-50"
-          @click="jumpPage(page.currentPage + 1)"
-        >
-          <svg
-            class="h-5 w-5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            />
-          </svg>
-        </a>
-      </nav>
-    </div>
+          <path
+            fill-rule="evenodd"
+            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+    </nav>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { page } from '../store';
+import { usePost } from '../hooks';
 import { computed } from 'vue';
 
-const start = computed(() => (page.currentPage - 1) * page.pageSize + 1);
+const leftText = 'font-medium text-[--vp-c-brand]';
+const { currentPage, pageSize, total, totalPage } = usePost();
+const start = computed(() => (currentPage.value - 1) * pageSize.value + 1);
 const end = computed(() => {
-  const end = page.currentPage * page.pageSize;
-  return end > page.total ? page.total : end;
+  const end = currentPage.value * pageSize.value;
+  return end > total.value ? total.value : end;
 });
 
 const jumpPage = (targetPage: number) => {
-  if (page.currentPage !== targetPage && targetPage <= page.totalPage && targetPage >= 1)
-    page.currentPage = targetPage;
+  if (currentPage.value !== targetPage && targetPage <= totalPage.value && targetPage >= 1)
+    currentPage.value = targetPage;
 };
 </script>
+
+<style lang="less" scoped>
+.item {
+  color: var(--vp-c-text-2);
+  @apply relative flex items-center justify-center px-1 py-1
+   text-sm font-medium w-8 h-8 shrink-0 rounded-md cursor-pointer hover:text-[--vp-c-brand];
+
+  &.not-allowed {
+    @apply cursor-not-allowed;
+  }
+}
+</style>

@@ -1,16 +1,13 @@
-import './assets/styles/main.less';
 import Pagination from './components/pagination.vue';
 import Icons from './components/icons.vue';
 import Layout from './layout.vue';
-import NotFound from './not-found.vue';
 import Posts from './components/posts.vue';
 import Zooming from 'zooming';
-import { load } from '@panelbear/panelbear-js';
 import { Theme } from 'vitepress';
+import './assets/styles/index.less';
 
 const theme: Theme = {
   Layout,
-  NotFound,
   enhanceApp({ app }) {
     app.component('Posts', Posts);
     app.component('Pagination', Pagination);
@@ -25,11 +22,11 @@ const theme: Theme = {
 
     // analytics
     // app.provide('analytics', Panelbear);
-    load(import.meta.env.VITE_PANELBEAR_ID as string, {
-      spaMode: 'history',
-      autoTrack: true,
-      debug: import.meta.env.DEV,
-    });
+    // load(import.meta.env.VITE_PANELBEAR_ID as string, {
+    //   spaMode: 'history',
+    //   autoTrack: true,
+    //   debug: import.meta.env.DEV,
+    // });
   },
 };
 export default theme;

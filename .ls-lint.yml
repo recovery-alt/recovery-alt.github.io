@@ -7,5 +7,5 @@ ls:
     .less: kebab-case
 
 ignore:
-  - src/locale/lang
   - .vitepress/cache
+  - .vitepress/theme/post.data.ts

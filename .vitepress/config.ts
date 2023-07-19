@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress';
 
 export default defineConfig({
   title: 'Recovery',
-  scrollOffset: 40,
+  scrollOffset: 70,
   head: [
     ['link', { rel: 'icon', href: '/icon.svg' }],
     [

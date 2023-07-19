@@ -4,7 +4,7 @@
     :key="item.url"
     :href="item.url"
     target="_blank"
-    class="unstyled transition-opacity inline-block opacity-70 hover:opacity-100 mr-5"
+    class="transition-opacity inline-block opacity-70 hover:opacity-100 mr-5"
     :title="item.title"
   >
     <component :is="item.name" />
