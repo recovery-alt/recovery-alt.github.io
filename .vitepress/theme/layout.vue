@@ -9,7 +9,7 @@
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          fill="#059669"
+          fill="var(--vp-c-brand)"
           d="M50.4,-15.8C59.3,10.9,56.2,42.1,36,58.9C15.9,75.8,-21.4,78.3,-41.8,62.4C-62.2,46.4,-65.8,11.9,-56,-16C-46.2,-43.9,-23.1,-65.4,-1.2,-65C20.8,-64.6,41.5,-42.4,50.4,-15.8Z"
           transform="translate(100 100)"
         />
@@ -30,7 +30,7 @@
 <script lang="ts" setup>
 import { inject, watch } from 'vue';
 import { useData } from 'vitepress';
-import icons from './components/icons.vue';
+import Icons from './components/icons.vue';
 import BackToTop from './components/back-to-top.vue';
 import DefaultTheme from 'vitepress/theme';
 const { Layout } = DefaultTheme;

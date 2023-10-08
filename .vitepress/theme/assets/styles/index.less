@@ -2,28 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('vars.less');
-
-h1,
-h2,
-h3,
-h4 {
-  @apply font-sans;
-}
-
 .container a.title {
-  @apply relative font-bold text-2xl font-sans;
+  @apply relative text-2xl;
 
   color: var(--vp-c-brand);
 }
 
-.vp-doc :not(pre) > code {
-  background-image: linear-gradient(#aeefdd, #f0f5f2);
-  color: #111827;
-}
-
 .VPNavBarMenu .VPNavBarMenuLink {
-  @apply relative overflow-hidden font-sans font-bold text-lg px-0 mx-3;
+  @apply relative overflow-hidden text-lg px-0 mx-3;
 
   &::before,
   &::after {
@@ -47,10 +33,6 @@ h4 {
       @apply opacity-100 w-1/2 bg-[--vp-c-brand];
     }
   }
-}
-
-.VPNavBarMenu .VPNavScreenMenuLink {
-  @apply font-sans font-bold text-lg;
 }
 
 .VPContent {

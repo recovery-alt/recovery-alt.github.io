@@ -14,3 +14,7 @@ Get in touch, let's chat! :)
 ## Socials
 
 <icons />
+
+<script setup>
+import Icons from '../.vitepress/theme/components/icons.vue';
+</script>

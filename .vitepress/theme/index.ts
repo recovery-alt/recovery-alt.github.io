@@ -1,7 +1,4 @@
-import Pagination from './components/pagination.vue';
-import Icons from './components/icons.vue';
 import Layout from './layout.vue';
-import Posts from './components/posts.vue';
 import Zooming from 'zooming';
 import { Theme } from 'vitepress';
 import './assets/styles/index.less';
@@ -9,10 +6,6 @@ import './assets/styles/index.less';
 const theme: Theme = {
   Layout,
   enhanceApp({ app }) {
-    app.component('Posts', Posts);
-    app.component('Pagination', Pagination);
-    app.component('Icons', Icons);
-
     // if we're in a server context then we exit out here
     if (typeof document === 'undefined' || typeof window === 'undefined') return;
 

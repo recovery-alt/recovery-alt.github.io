@@ -9,3 +9,5 @@ ls:
 ignore:
   - .vitepress/cache
   - .vitepress/theme/post.data.ts
+  - .vitepress/cache
+  - .vitepress/dist

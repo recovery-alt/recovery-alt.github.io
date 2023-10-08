@@ -15,9 +15,14 @@ description: 'description'
   <span class="text-2xl ml-4 font-san">Hey, I'm Recovery 👋</span>
 </h1>
 
-<p class="font-sans text-xl">
+<p class="text-xl">
   I'm a full stack developer. Actively trying to build new things with Node and Vue. Sharing my journey and learnings along the way.
 </p>
 
 <posts/>
 <pagination class="mt-8" />
+
+<script setup>
+  import Posts from './.vitepress/theme/components/posts.vue';
+  import Pagination from './.vitepress/theme/components/pagination.vue';
+</script>

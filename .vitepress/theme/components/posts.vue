@@ -8,7 +8,7 @@
       :href="post.url"
       :target="post.link ? '_blank' : ''"
     ></a>
-    <div class="bg-[--vp-c-mute] z-10 rounded-b-sm">
+    <div class="bg-[--vp-c-bg-alt] z-10 rounded-b-sm">
       <div class="md:p-8 p-4 prose md:prose-xl">
         <div class="pt-0 mb-5">
           <a
